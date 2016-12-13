@@ -1,0 +1,6 @@
+# Useful Maya Expressions
+
+## Play every other frame of alembic
+*remove the + 1 to do even frames*
+if (frame % 2 == 0)
+	Blue_Shot_170_FishingRod_v002_Blue_Shot_170_FishingRod_v002_AlembicNode.time = time + 1;
