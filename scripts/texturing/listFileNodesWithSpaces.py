@@ -1,4 +1,5 @@
-"""
+"""listFileNodesWithSpaces.py
+
 This script prints the name and selects every file node with a space in the filename.
 """
 import maya.cmds as cmds
