@@ -24,188 +24,11 @@ class ShotCreator(QtGui.QDialog):
         self.connect(self.create_btn, QtCore.SIGNAL("clicked()"), self.makeDir)
         self.progressBar.setValue(0)
 
-
-
-
-    def makeDir(self):
-        #Get data
-        departments = self.queryValues()
-        shots = self.fullShotAmount()
-        proj = self.projName()
-
-        #Converting proj to string
-        proj = str(proj)
-
-        #Converting dirLoc to string
-        dirLoc = self.browseLocation.text()
-        dirLoc = str(dirLoc)
-
-        if dirLoc == "":
-            msgBox = QtGui.QMessageBox()
-            msgBox.setIcon(QMessageBox.Warning)
-            msgBox.setWindowTitle("Oops - Directory Location")
-            msgBox.setText("Please give a directory location")
-            msgBox.exec_()
-
-
-        #Make dirs
-        if not os.path.exists(dirLoc):
-            os.mkdir(dirLoc)
-        os.chdir(dirLoc)
-
-        if not os.path.exists(proj):
-            os.mkdir(proj)
-
-        os.chdir(proj)
-
-
-        #Creating folders
-        if not os.path.exists("Images"):
-            os.mkdir("Images")
-
-        if not os.path.exists("Work"):
-            os.mkdir("Work")
-
-        if not os.path.exists("Repository"):
-            os.mkdir("Repository")
-
-        if not os.path.exists("Production"):
-            if "Production" in departments:
-                os.mkdir("Production")
-
-        if not os.path.exists("Source Plates"):
-            if "Source Plates" in departments:
-                os.mkdir("Source Plates")
-
-        os.chdir("Images")
-
-        #Creating shot numbers
-        shot = 0
-        for s in shots:
-            shot = shot + 5
-            sShot = ("00" + str(shot))
-
-            if not os.path.exists(sShot):
-
-                #Create shot and it's folders for "Images"
-                #Create shot folder
-                os.mkdir(sShot)
-                os.chdir(sShot)
-                #Create Compositing
-                if "Compositing" in departments:
-                    os.makedirs(os.path.join("Compositing", "Nuke"))
-                #Back to shot
-                os.chdir(dirLoc)
-                os.chdir(proj)
-                os.chdir("Images")
-                os.chdir(sShot)
-                #Create FX
-                if "FX" in departments:
-                    os.makedirs(os.path.join("FX", "Houdini"))
-                    os.chdir("FX")
-                    os.mkdir("Maya")
-                #Back to shot
-                os.chdir(dirLoc)
-                os.chdir(proj)
-                os.chdir("Images")
-                os.chdir(sShot)
-                #Create Lighting
-                if "Lighting" in departments:
-                    os.makedirs(os.path.join("Lighting", "Maya"))
-
-
-                #Create shot and it's folders for "Work"
-                os.chdir(dirLoc)
-                os.chdir(proj)
-                os.chdir("Work")
-                #Create shot folder
-                os.mkdir(sShot)
-                os.chdir(sShot)
-                if "Animation" in departments:
-                    os.makedirs(os.path.join("Animation", "Maya"))
-                    #Back to shot
-                    os.chdir(dirLoc)
-                    os.chdir(proj)
-                    os.chdir("Work")
-                    os.chdir(sShot)
-
-                if "Compositing" in departments:
-                    os.makedirs(os.path.join("Compositing", "Nuke"))
-                    #Back to shot
-                    os.chdir(dirLoc)
-                    os.chdir(proj)
-                    os.chdir("Work")
-                    os.chdir(sShot)
-
-                if "FX" in departments:
-                    os.makedirs(os.path.join("FX", "Houdini"))
-                    os.chdir("FX")
-                    os.mkdir("Maya")
-                    #Back to shot
-                    os.chdir(dirLoc)
-                    os.chdir(proj)
-                    os.chdir("Work")
-                    os.chdir(sShot)
-
-                if "Layout" in departments:
-                    os.mkdir("Layout")
-                    #Back to shot
-                    os.chdir(dirLoc)
-                    os.chdir(proj)
-                    os.chdir("Work")
-                    os.chdir(sShot)
-
-                if "Lighting" in departments:
-                    os.makedirs(os.path.join("Lighting", "Maya"))
-                    #Back to shot
-                    os.chdir(dirLoc)
-                    os.chdir(proj)
-                    os.chdir("Work")
-                    os.chdir(sShot)
-
-                if "Surfacing" in departments:
-                    os.makedirs(os.path.join("Surfacing", "Mari"))
-                    os.chdir("Surfacing")
-                    os.mkdir("Maya")
-
-
-                #Create shot and it's folders for "Source Plates"
-                os.chdir(dirLoc)
-                os.chdir(proj)
-                if os.path.exists("Source Plates"):
-                    os.chdir("Source Plates")
-                    #Create shot folder
-                    os.mkdir(sShot)
-                    os.chdir(sShot)
-                    os.makedirs(os.path.join("Image Sequence", "DeNoise" ))
-                    os.chdir("Image Sequence")
-                    os.mkdir("Source")
-                    os.chdir(dirLoc)
-                    os.chdir(proj)
-                    os.chdir("Source Plates")
-                    os.chdir(sShot)
-                    os.mkdir("MOVs")
-
-
-                #End of loop
-                os.chdir(dirLoc)
-                os.chdir(proj)
-                os.chdir("Images")
-                #Progress Bar update
-                self.progressBar.setValue((int(s) / int(len(shots))* 100))
-
-        self.progressBar.setValue(100)
-
-
-
-
-
     def openBrowse(self):
         dirLocation = str(QtGui.QFileDialog.getExistingDirectory(self, "Select Directory"))
         self.browseLocation.setText(dirLocation)
 
 
-    #Getting the amount of shots
     def fullShotAmount(self):
         amount = self.shotAmount
         amount = amount.text()
@@ -239,11 +62,6 @@ class ShotCreator(QtGui.QDialog):
             msgBox.setText("Please enter a whole number. (No letters, expressions, or float values)")
             msgBox.exec_()
 
-
-
-
-
-
     def projName(self):
         proj = self.projectName
         proj = proj.text()
@@ -258,8 +76,6 @@ class ShotCreator(QtGui.QDialog):
 
         else:
             return proj
-
-
 
     def queryValues(self):
         #Checking what folders to create and assigning name.
@@ -292,18 +108,7 @@ class ShotCreator(QtGui.QDialog):
         return self.checkBoxes
 
 
-
-
-
-
-
-
-
-
 if __name__ == '__main__':
     app = QtGui.QApplication(sys.argv)
     window = ShotCreator()
     sys.exit(app.exec_())
-
-
-
