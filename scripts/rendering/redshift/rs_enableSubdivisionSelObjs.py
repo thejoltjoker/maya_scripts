@@ -1,3 +1,8 @@
+"""
+rs_enableSubdivisionSelObjs.py
+
+Apply a nCloth preset to selected ncloth nodes.
+"""
 import maya.cmds as cmds
 sel_nodes = cmds.ls(sl=True)
 for node in sel_nodes:

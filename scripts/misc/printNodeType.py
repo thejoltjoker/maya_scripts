@@ -1,4 +1,5 @@
-"""printNodeType.py
+"""
+printNodeType.py
 
 print the node type of the selected node(s).
 """

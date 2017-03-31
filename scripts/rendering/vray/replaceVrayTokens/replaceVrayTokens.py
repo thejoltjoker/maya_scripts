@@ -1,3 +1,8 @@
+"""
+replaceVrayTokens.py
+
+Replace filename tokens in your texture path. Basically a glorified search and replace.
+"""
 from functools import partial
 import maya.cmds as cmds
 
@@ -28,7 +33,7 @@ class replaceVrayToken(object):
         # Display the window
         cmds.showWindow()
 
-    def replaceFileName (self, astInput, verInput, sastInput,*args):
+    def replaceFileName(self, astInput, verInput, sastInput,*args):
         selTextures = cmds.ls(sl=True)
 
         for texture in selTextures:

@@ -1,3 +1,8 @@
+"""
+createVrayPasses.py
+
+Create vray render elements.
+"""
 import maya.cmds as cmds
 import maya.mel as mel
 
