@@ -32,15 +32,30 @@ def assignRedshiftIds():
             else:
                 print node+" has the object id "+str(current_obj_id)
 
+    # Set material id
+    shading_groups = cmds.listConnections(sel_nodes, type='shadingEngine')
+    shading_groups = list(set(shading_groups))
+
+    # Make list of current material id's
+    current_mtl_ids = []
+    for node in shading_groups:
+        id_exists = cmds.attributeQuery('rsObjectId', node=node, exists=True)
+        if id_exists:
+            current_obj_id = cmds.getAttr(node+'.rsObjectId')
+            current_mtl_ids.append(current_obj_id)
+
+    for node in shading_groups:
+        if node != 'initialShadingGroup':
+            id_exists = cmds.attributeQuery('rsMaterialId', node=node, exists=True)
+            if id_exists:
+                current_obj_id = cmds.getAttr(node+'.rsMaterialId')
+                if current_obj_id == 0:
+                    while id_number in current_mtl_ids:
+                        id_number += 1
+                    cmds.setAttr(node+'.rsMaterialId', id_number)
+                    current_mtl_ids.append(id_number)
+                    print node+" has the material id "+str(id_number)
+                else:
+                    print node+" has the material id "+str(current_obj_id)
+
 assignRedshiftIds()
-
-
-
-
-# DON'T MIND THIS....
-
-# shading_groups = cmds.listConnections(sel_nodes, type='shadingEngine')
-# remove duplicate shading groups from list
-# shadingGrps = list(set(shadingGrps))
-
-# .rsMaterialId" 1;
