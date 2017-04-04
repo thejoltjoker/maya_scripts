@@ -58,4 +58,31 @@ def assignRedshiftIds():
                 else:
                     print node+" has the material id "+str(current_obj_id)
 
-assignRedshiftIds()
+def listRedshiftIds():
+    all_nodes = cmds.ls()
+    id_number = 1
+    current_ids = []
+
+    # Print object id's
+    for node in all_nodes:
+        id_exists = cmds.attributeQuery('rsObjectId', node=node, exists=True)
+        if id_exists:
+            current_obj_id = cmds.getAttr(node+'.rsObjectId')
+            if current_obj_id != 0:
+                current_ids.append(current_obj_id)
+                print node+" has the object id "+str(current_obj_id)
+
+    # Get materials
+    shading_groups = cmds.listConnections(all_nodes, type='shadingEngine')
+    shading_groups = list(set(shading_groups))
+
+    # Print material id's
+    current_mtl_ids = []
+    for node in shading_groups:
+        if node != 'initialShadingGroup':
+            id_exists = cmds.attributeQuery('rsMaterialId', node=node, exists=True)
+            if id_exists:
+                current_obj_id = cmds.getAttr(node+'.rsMaterialId')
+                if current_obj_id != 0:
+                    current_obj_id = cmds.getAttr(node+'.rsMaterialId')
+                    print node+" has the material id "+str(current_obj_id)
