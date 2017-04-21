@@ -9,9 +9,9 @@ def assignRedshiftIds():
     all_nodes = cmds.ls()
     sel_nodes = cmds.ls(dag=True, o=True, s=True, sl=True)
     id_number = 1
-    current_ids = []
 
     # Make list of current object id's
+    current_ids = []
     for node in all_nodes:
         id_exists = cmds.attributeQuery('rsObjectId', node=node, exists=True)
         if id_exists:
@@ -39,9 +39,9 @@ def assignRedshiftIds():
     # Make list of current material id's
     current_mtl_ids = []
     for node in shading_groups:
-        id_exists = cmds.attributeQuery('rsObjectId', node=node, exists=True)
+        id_exists = cmds.attributeQuery('rsMaterialId', node=node, exists=True)
         if id_exists:
-            current_obj_id = cmds.getAttr(node+'.rsObjectId')
+            current_obj_id = cmds.getAttr(node+'.rsMaterialId')
             current_mtl_ids.append(current_obj_id)
 
     for node in shading_groups:
@@ -64,6 +64,9 @@ def listRedshiftIds():
     current_ids = []
 
     # Print object id's
+    print "-------------------------"
+    print "Object ID's"
+    print "-------------------------"
     for node in all_nodes:
         id_exists = cmds.attributeQuery('rsObjectId', node=node, exists=True)
         if id_exists:
@@ -71,11 +74,15 @@ def listRedshiftIds():
             if current_obj_id != 0:
                 current_ids.append(current_obj_id)
                 print node+" has the object id "+str(current_obj_id)
-
+    obj_id_count = len(current_ids)
+    print "Totally "+str(obj_id_count)+" material id's."
     # Get materials
     shading_groups = cmds.listConnections(all_nodes, type='shadingEngine')
     shading_groups = list(set(shading_groups))
 
+    print "-------------------------"
+    print "Material ID's"
+    print "-------------------------"
     # Print material id's
     current_mtl_ids = []
     for node in shading_groups:
@@ -85,4 +92,8 @@ def listRedshiftIds():
                 current_obj_id = cmds.getAttr(node+'.rsMaterialId')
                 if current_obj_id != 0:
                     current_obj_id = cmds.getAttr(node+'.rsMaterialId')
+                    current_mtl_ids.append(current_obj_id)
                     print node+" has the material id "+str(current_obj_id)
+
+    mat_id_count = len(current_mtl_ids)
+    print "Totally "+str(mat_id_count)+" material id's."
