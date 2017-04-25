@@ -9,205 +9,131 @@ def testRenderer():
         cmds.setAttr('redshiftOptions.imageFormat', 1)
         print "Image format set to exr."
 
-def createRedshiftBeautyAovs():
-    # Create beauty passes
-    # These passes are chosen based on the AOV tutorial in the Redshift manual http://docs.redshift3d.com/Default.html#I/AOV Tutorial.html
-    existing_aovs = cmds.ls(type='RedshiftAOV')
-    existing_aovs_nice = []
-    for aovNode in existing_aovs:
-        aov_nice = cmds.getAttr(aovNode+'.aovType')
-        existing_aovs_nice.append(aov_nice)
-
-    beauty_aovs = [ 'Diffuse Filter',
-                    'Diffuse Lighting Raw',
-                    'Global Illumination Raw',
-                    'Sub Surface Scatter',
-                    'Specular Lighting',
-                    'Reflections',
-                    'Refractions',
-                    'Emission',
-                    'Caustics']
-
-    for aov in beauty_aovs:
-        if aov not in existing_aovs_nice:
-            aovNode = cmds.rsCreateAov(type=aov)
-            cmds.setAttr(aovNode+'.filePrefix', '<BeautyPath>/<BeautyFile>', type='string')
-        else:
-            print aov+" already exists and has been skipped."
-
-    if cmds.frameLayout('rsLayout_AovAOVsFrame', exists=1):
-        mel.eval('redshiftUpdateActiveAovList')
-
-def createRedshiftUtilAovs():
-    # Create utility passes
-    # These passes are chosen based on my own needs.
-    existing_aovs = cmds.ls(type='RedshiftAOV')
-    existing_aovs_nice = []
-    for aovNode in existing_aovs:
-        aov_nice = cmds.getAttr(aovNode+'.aovType')
-        existing_aovs_nice.append(aov_nice)
-
-    util_aovs = [   'Bump Normals',
-                    'Depth',
-                    'Motion Vectors',
-                    'Normals',
-                    'World Position']
-
-    for aov in util_aovs:
-        if aov not in existing_aovs_nice:
-            aovNode = cmds.rsCreateAov(type=aov)
-            cmds.setAttr(aovNode+'.filePrefix', '<BeautyPath>/<BeautyFile>', type='string')
-            if aov == 'Depth':
-                cmds.setAttr(aovNode+'.normalizeZeroToOne', 1)
-        else:
-            print aov+" already exists and has been skipped."
-
-    if cmds.frameLayout('rsLayout_AovAOVsFrame', exists=1):
-        mel.eval('redshiftUpdateActiveAovList')
-
-def createAovSwitch():
-    pass_holder = cmds.polyCube(n='rsPassHolder')[0]
-    cmds.setAttr(pass_holder+'.visibility', 0, k=False, l=True, cb=False)
-    cmds.setAttr(pass_holder+'.tx', k=False, l=True, cb=False)
-    cmds.setAttr(pass_holder+'.ty', k=False, l=True, cb=False)
-    cmds.setAttr(pass_holder+'.tz', k=False, l=True, cb=False)
-    cmds.setAttr(pass_holder+'.rx', k=False, l=True, cb=False)
-    cmds.setAttr(pass_holder+'.ry', k=False, l=True, cb=False)
-    cmds.setAttr(pass_holder+'.rz', k=False, l=True, cb=False)
-    cmds.setAttr(pass_holder+'.sx', k=False, l=True, cb=False)
-    cmds.setAttr(pass_holder+'.sy', k=False, l=True, cb=False)
-    cmds.setAttr(pass_holder+'.sz', k=False, l=True, cb=False)
-    cmds.delete(pass_holder, ch=True)
-
-    # Create pass holder group
-    pass_holder_grp = cmds.group(pass_holder, name='rsAOVControl')
-    cmds.setAttr(pass_holder_grp+'.visibility', 1, k=False, cb=False)
-    cmds.setAttr(pass_holder_grp+'.tx', k=False, l=True, cb=False)
-    cmds.setAttr(pass_holder_grp+'.ty', k=False, l=True, cb=False)
-    cmds.setAttr(pass_holder_grp+'.tz', k=False, l=True, cb=False)
-    cmds.setAttr(pass_holder_grp+'.rx', k=False, l=True, cb=False)
-    cmds.setAttr(pass_holder_grp+'.ry', k=False, l=True, cb=False)
-    cmds.setAttr(pass_holder_grp+'.rz', k=False, l=True, cb=False)
-    cmds.setAttr(pass_holder_grp+'.sx', k=False, l=True, cb=False)
-    cmds.setAttr(pass_holder_grp+'.sy', k=False, l=True, cb=False)
-    cmds.setAttr(pass_holder_grp+'.sz', k=False, l=True, cb=False)
-    cmds.delete(pass_holder_grp, ch=True)
-    cmds.addAttr(pass_holder_grp, ln='enableBeauty', nn='Enable Beauty AOVs', at='bool', k=True)
-    cmds.addAttr(pass_holder_grp, ln='enableUtility', nn='Enable Utility AOVs', at='bool', k=True)
-
-    beauty_aovs = [ 'Diffuse Filter',
-                    'Diffuse Lighting Raw',
-                    'Global Illumination Raw',
-                    'Sub Surface Scatter',
-                    'Specular Lighting',
-                    'Reflections',
-                    'Refractions',
-                    'Emission',
-                    'Caustics']
-
-    util_aovs = [   'Bump Normals',
-                    'Depth',
-                    'Motion Vectors',
-                    'Normals',
-                    'World Position']
-
-    # Connect attributes
-    existing_aovs = cmds.ls(type='RedshiftAOV')
-    for aovNode in existing_aovs:
-        aov_nice = cmds.getAttr(aovNode+'.aovType')
-        if aov_nice in beauty_aovs:
-            cmds.connectAttr(pass_holder_grp+'.enableBeauty', aovNode+'.enabled')
-        elif aov_nice in util_aovs:
-            cmds.connectAttr(pass_holder_grp+'.enableUtility', aovNode+'.enabled')
-        else:
-            print aov_nice+" was created manually and was not assigned to the AOV control."
-
-
-def listRedshiftIds():
-    all_nodes = cmds.ls()
-    id_number = 1
-    current_ids = []
-
-    # Print object id's
-    print "-------------------------"
-    print "Object ID's"
-    print "-------------------------"
-    for node in all_nodes:
-        id_exists = cmds.attributeQuery('rsObjectId', node=node, exists=True)
-        if id_exists:
-            current_obj_id = cmds.getAttr(node+'.rsObjectId')
-            if current_obj_id != 0:
-                current_ids.append(current_obj_id)
-                print node+" has the object id "+str(current_obj_id)
-    obj_id_count = len(current_ids)
-    print "Totally "+str(obj_id_count)+" material id's."
-    # Get materials
-    shading_groups = cmds.listConnections(all_nodes, type='shadingEngine')
-    shading_groups = list(set(shading_groups))
-
-    print "-------------------------"
-    print "Material ID's"
-    print "-------------------------"
-    # Print material id's
-    current_mtl_ids = []
-    for node in shading_groups:
-        if node != 'initialShadingGroup':
-            id_exists = cmds.attributeQuery('rsMaterialId', node=node, exists=True)
-            if id_exists:
-                current_obj_id = cmds.getAttr(node+'.rsMaterialId')
-                if current_obj_id != 0:
-                    current_obj_id = cmds.getAttr(node+'.rsMaterialId')
-                    current_mtl_ids.append(current_obj_id)
-                    print node+" has the material id "+str(current_obj_id)
-
-    mat_id_count = len(current_mtl_ids)
-    print "Totally "+str(mat_id_count)+" material id's."
-
 def createPuzzleMattes():
     all_nodes = cmds.ls()
     id_number = 1
+    inc = 1
     current_ids = []
     puzzle_cur_ids = []
-
-    # Make list of assigned ids
-    for node in all_nodes:
-        id_exists = cmds.attributeQuery('rsObjectId', node=node, exists=True)
-        if id_exists:
-            current_obj_id = cmds.getAttr(node+'.rsObjectId')
-            if current_obj_id != 0:
-                current_ids.append(current_obj_id)
-                print node+" has the object id "+str(current_obj_id)
-    obj_id_count = len(current_ids)
-    print "Totally "+str(obj_id_count)+" material id's."
+    puzzle_mattes = []
+    empty_puzzle_channels = []
+    empty_puzzle_channels_value = []
+    puzzle_id_channels = []
+    puzzle_channels = []
+    puzzle_channels_value = []
 
     # Make list of puzzle mattes
     existing_aovs = cmds.ls(type='RedshiftAOV')
-    for aovNode in existing_aovs:
+    for aov_node in existing_aovs:
         # Get aov type
-        aov_nice = cmds.getAttr(aovNode+'.aovType')
-        if aov_nice is 'Puzzle Matte':
-            red_id = cmds.getAttr(aovNode+'.redId')
-            green_id = cmds.getAttr(aovNode+'.greenId')
-            blue_id = cmds.getAttr(aovNode+'.blueId')
-            puzzle_id_channels = [red_id, green_id, blue_id]
-            # Check existing channels
-            for ch in puzzle_id_channels:
-                if ch is '0':
-                    # Add to list of empty channels
-                    empty_puzzle_channels.append(ch)
+        aov_nice = cmds.getAttr(aov_node+'.aovType')
+
+        # If the AOV is puzzle matte
+        if aov_nice == 'Puzzle Matte':
+            print "aov_nice MATTE = "+aov_node
+
+            # Append to list of puzzle mattes
+            puzzle_mattes.append(aov_node)
+
+            red_id = cmds.getAttr(aov_node+'.redId')
+            if red_id == 0:
+                # Add attribute to list of empty puzzle id channels
+                empty_puzzle_channels.append(aov_node+'.redId')
+                # Add value to list of empty puzzle id channels
+                empty_puzzle_channels_value.append(cmds.getAttr(aov_node+'.redId'))
+            else:
+                # Add attribute to list of puzzle id channels
+                puzzle_channels.append(aov_node+'.redId')
+                # Add value to list of puzzle id channels
+                puzzle_channels_value.append(cmds.getAttr(aov_node+'.redId'))
+
+            green_id = cmds.getAttr(aov_node+'.greenId')
+            if green_id == 0:
+                # Add attribute to list of empty puzzle id channels
+                empty_puzzle_channels.append(aov_node+'.greenId')
+                # Add value to list of empty puzzle id channels
+                empty_puzzle_channels_value.append(cmds.getAttr(aov_node+'.greenId'))
+
+            else:
+                # Add attribute to list of puzzle id channels
+                puzzle_channels.append(aov_node+'.greenId')
+                # Add value to list of puzzle id channels
+                puzzle_channels_value.append(cmds.getAttr(aov_node+'.greenId'))
+
+            blue_id = cmds.getAttr(aov_node+'.blueId')
+            if blue_id == 0:
+                # Add attribute to list of empty puzzle id channels
+                empty_puzzle_channels.append(aov_node+'.blueId')
+                # Add value to list of empty puzzle id channels
+                empty_puzzle_channels_value.append(cmds.getAttr(aov_node+'.blueId'))
+
+            else:
+                # Add attribute to list of puzzle id channels
+                puzzle_channels.append(aov_node+'.blueId')
+                # Add value to list of puzzle id channels
+                puzzle_channels_value.append(cmds.getAttr(aov_node+'.blueId'))
+
+    for i in empty_puzzle_channels:
+        print "empty_puzzle_channels = "+str(i)
+    for i in empty_puzzle_channels_value:
+        print "empty_puzzle_channels_value = "+str(i)
+
+    for i in puzzle_channels:
+        print "puzzle_channels = "+str(i)
+    for i in puzzle_channels_value:
+        print "puzzle_channels_value = "+str(i)
+
+    count_empty_puzzle_channels = len(empty_puzzle_channels)
+
+    # Loop through all nodes and check for object ids
+    for node in all_nodes:
+        id_exists = cmds.attributeQuery('rsObjectId', node=node, exists=True)
+        if id_exists:
+            # If object id exists
+            current_obj_id = cmds.getAttr(node+'.rsObjectId')
+            if current_obj_id != 0:
+
+                # Check if a puzzle matte already contains the id
+                if current_obj_id in puzzle_channels_value:
+                    print "There is already a Puzzle Matte for "+str(current_obj_id)
                 else:
-                    # Add to list of currently used ids
-                    puzzle_cur_ids.append(ch)
+                    # Check if there's an empty puzzle matte channel
+                    if count_empty_puzzle_channels != 0:
+                        cmds.setAttr(empty_puzzle_channels[0], current_obj_id)
+                        empty_puzzle_channels.remove(empty_puzzle_channels[0])
+                        # print str(empty_puzzle_channels[0])+" was assigned object id "+str(current_obj_id)
+                    else:
+                        # Test for puzzle matte name
+                        puzzle_name = 'ObjectId'
+                        puzzle_increment = str(inc)
+                        new_puzzle_increment = puzzle_increment.zfill(2)
+                        new_puzzle_name = "_".join([puzzle_name, new_puzzle_increment])
+                        for n in puzzle_mattes:
+                            if n != new_puzzle_name:
+                                print "NEW NAME"
+                                inc += 1
+                                puzzle_increment = str(inc)
+                                new_puzzle_increment = puzzle_increment.zfill(2)
+                                new_puzzle_name = "_".join([puzzle_name, new_puzzle_increment])
 
-    # Check if a puzzle matte already contains the id
-    for obj_id in current_ids:
-        if obj_id in puzzle_cur_ids:
-            print "There is already a Puzzle Matte for "+obj_id
-        else:
-            if not empty_puzzle_channels:
-                for e in empty_puzzle_channels:
-                    cmds.setAttr
+                        aov_node = cmds.rsCreateAov(type='Puzzle Matte')
+                        cmds.setAttr(aov_node+'.mode', 1)
+                        cmds.setAttr(aov_node+'.name', new_puzzle_name, type='string')
+                        cmds.setAttr(aov_node+'.filePrefix', '<BeautyPath>/<BeautyFile>', type='string')
+                        cmds.setAttr(aov_node+'.redId', current_obj_id)
 
-    setAttr "rsAov_PuzzleMatte.redId" 7;
-setAttr "rsAov_PuzzleMatte.greenId" 28;
-setAttr "rsAov_PuzzleMatte.blueId" 19;
+                        # Append to list of puzzle mattes
+                        puzzle_mattes.append(aov_node)
+
+                        empty_puzzle_channels.append(aov_node+'.greenId')
+                        empty_puzzle_channels.append(aov_node+'.blueId')
+                        empty_puzzle_channels_value.append(cmds.getAttr(aov_node+'.greenId'))
+                        empty_puzzle_channels_value.append(cmds.getAttr(aov_node+'.blueId'))
+                        print empty_puzzle_channels
+                        count_empty_puzzle_channels = len(empty_puzzle_channels)
+
+    if cmds.frameLayout('rsLayout_AovAOVsFrame', exists=1):
+        mel.eval('redshiftUpdateActiveAovList')
+
+
+createPuzzleMattes()
