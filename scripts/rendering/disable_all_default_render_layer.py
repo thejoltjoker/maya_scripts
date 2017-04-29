@@ -1,5 +1,5 @@
 """
-disableAllDefaultRenderLayer.py
+disable_all_default_render_layer.py
 
 Disable all defaultRenderLayer from rendering. Useful when having references etc.
 """

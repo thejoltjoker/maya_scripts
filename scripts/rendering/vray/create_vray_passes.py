@@ -1,5 +1,5 @@
 """
-createVrayPasses.py
+create_vray_passes.py
 
 Create vray render elements.
 """

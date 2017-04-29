@@ -1,3 +1,6 @@
+"""
+assign_vray_mat_ids.py
+"""
 import maya.cmds as cmds
 
 

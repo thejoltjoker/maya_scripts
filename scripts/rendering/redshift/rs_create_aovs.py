@@ -1,3 +1,6 @@
+"""
+rs_create_aovs.py
+"""
 import maya.cmds as cmds
 import maya.mel as mel
 
@@ -121,93 +124,3 @@ def createAovSwitch():
             cmds.connectAttr(pass_holder_grp+'.enableUtility', aovNode+'.enabled')
         else:
             print aov_nice+" was created manually and was not assigned to the AOV control."
-
-
-def listRedshiftIds():
-    all_nodes = cmds.ls()
-    id_number = 1
-    current_ids = []
-
-    # Print object id's
-    print "-------------------------"
-    print "Object ID's"
-    print "-------------------------"
-    for node in all_nodes:
-        id_exists = cmds.attributeQuery('rsObjectId', node=node, exists=True)
-        if id_exists:
-            current_obj_id = cmds.getAttr(node+'.rsObjectId')
-            if current_obj_id != 0:
-                current_ids.append(current_obj_id)
-                print node+" has the object id "+str(current_obj_id)
-    obj_id_count = len(current_ids)
-    print "Totally "+str(obj_id_count)+" material id's."
-    # Get materials
-    shading_groups = cmds.listConnections(all_nodes, type='shadingEngine')
-    shading_groups = list(set(shading_groups))
-
-    print "-------------------------"
-    print "Material ID's"
-    print "-------------------------"
-    # Print material id's
-    current_mtl_ids = []
-    for node in shading_groups:
-        if node != 'initialShadingGroup':
-            id_exists = cmds.attributeQuery('rsMaterialId', node=node, exists=True)
-            if id_exists:
-                current_obj_id = cmds.getAttr(node+'.rsMaterialId')
-                if current_obj_id != 0:
-                    current_obj_id = cmds.getAttr(node+'.rsMaterialId')
-                    current_mtl_ids.append(current_obj_id)
-                    print node+" has the material id "+str(current_obj_id)
-
-    mat_id_count = len(current_mtl_ids)
-    print "Totally "+str(mat_id_count)+" material id's."
-
-def createPuzzleMattes():
-    all_nodes = cmds.ls()
-    id_number = 1
-    current_ids = []
-    puzzle_cur_ids = []
-
-    # Make list of assigned ids
-    for node in all_nodes:
-        id_exists = cmds.attributeQuery('rsObjectId', node=node, exists=True)
-        if id_exists:
-            current_obj_id = cmds.getAttr(node+'.rsObjectId')
-            if current_obj_id != 0:
-                current_ids.append(current_obj_id)
-                print node+" has the object id "+str(current_obj_id)
-    obj_id_count = len(current_ids)
-    print "Totally "+str(obj_id_count)+" material id's."
-
-    # Make list of puzzle mattes
-    existing_aovs = cmds.ls(type='RedshiftAOV')
-    for aovNode in existing_aovs:
-        # Get aov type
-        aov_nice = cmds.getAttr(aovNode+'.aovType')
-        if aov_nice is 'Puzzle Matte':
-            red_id = cmds.getAttr(aovNode+'.redId')
-            green_id = cmds.getAttr(aovNode+'.greenId')
-            blue_id = cmds.getAttr(aovNode+'.blueId')
-            puzzle_id_channels = [red_id, green_id, blue_id]
-            # Check existing channels
-            for ch in puzzle_id_channels:
-                if ch is '0':
-                    # Add to list of empty channels
-                    empty_puzzle_channels.append(ch)
-                else:
-                    # Add to list of currently used ids
-                    puzzle_cur_ids.append(ch)
-
-    # Check if a puzzle matte already contains the id
-    for obj_id in current_ids:
-        if obj_id in puzzle_cur_ids:
-            print "There is already a Puzzle Matte for "+obj_id
-        else:
-            if not empty_puzzle_channels:
-                for e in empty_puzzle_channels:
-                    cmds.setAttr
-
-    setAttr "rsAov_PuzzleMatte.redId" 7;
-setAttr "rsAov_PuzzleMatte.greenId" 28;
-setAttr "rsAov_PuzzleMatte.blueId" 19;
