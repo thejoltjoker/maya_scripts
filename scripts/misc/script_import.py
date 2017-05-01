@@ -5,7 +5,7 @@ Import a script and run a function in maya.
 """
 def scriptImport():
     from sequence.maya.tools.clayblast import clayblast_submit
-    reload(clayblast)
+    reload(clayblast_submit)
     clayblast_submit.cb_submit()
     print '# Script reloaded'
 
