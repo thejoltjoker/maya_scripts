@@ -1,3 +1,7 @@
+"""
+offset_keyframes.py
+"""
+
 import maya.cmds as cmds
 
 
@@ -12,7 +16,7 @@ import maya.cmds as cmds
 # firstKeyframe - animStartFrame * -1
 
 def offset_anim_keyframe(anim_curves, frame_offset):
-    mc.keyframe(anim_curves, e=1, includeUpperBound=True, option='over', relative=1, timeChange=frame_offset)
+    cmds.keyframe(anim_curves, e=1, includeUpperBound=True, option='over', relative=1, timeChange=frame_offset)
 
 # offset all keyframes
 all_curves = cmds.ls(type="animCurve")

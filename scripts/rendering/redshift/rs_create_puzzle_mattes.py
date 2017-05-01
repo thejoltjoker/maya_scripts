@@ -1,3 +1,6 @@
+"""
+rs_create_puzzle_mattes.py
+"""
 import maya.cmds as cmds
 import maya.mel as mel
 

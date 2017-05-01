@@ -7,5 +7,5 @@ import maya.cmds as cmds
 
 sel = cmds.ls(sl=True)
 for i in sel:
-	n = cmds.nodeType(i)
-	print n
+    n = cmds.nodeType(i)
+    print n

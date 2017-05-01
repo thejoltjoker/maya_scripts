@@ -1,5 +1,5 @@
 """
-renameFileNodeToFilename.py
+rename_file_node_to_filename.py
 
 Rename file nodes in maya to be the name of the input file.
 """

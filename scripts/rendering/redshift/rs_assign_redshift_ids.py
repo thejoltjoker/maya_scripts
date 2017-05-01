@@ -1,5 +1,5 @@
 """
-rs_assignRedshiftIds.py
+rs_assign_redshift_ids.py
 
 Assign Redshift object id's to selected objects.
 """
