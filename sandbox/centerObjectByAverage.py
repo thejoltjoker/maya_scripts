@@ -9,15 +9,15 @@ centerObj = selection[-1]
 del selection[-1]
 
 for i in selection:
-	cmds.select(i)
-	vertPos = cmds.xform( q=True, ws=True, t=True )
+    cmds.select(i)
+    vertPos = cmds.xform( q=True, ws=True, t=True )
 
- 	# x pos
- 	vertPosX.extend(vertPos[0::3])
- 	# y pos
- 	vertPosY.extend(vertPos[1::3])
- 	# z pos
- 	vertPosZ.extend(vertPos[2::3])
+     # x pos
+     vertPosX.extend(vertPos[0::3])
+     # y pos
+     vertPosY.extend(vertPos[1::3])
+     # z pos
+     vertPosZ.extend(vertPos[2::3])
 
 xAverage = reduce(lambda x, y: x + y, vertPosX) / len(vertPosX)
 yAverage = reduce(lambda x, y: x + y, vertPosY) / len(vertPosY)
