@@ -12,5 +12,5 @@ for node in sel_nodes:
     if cmds.nodeType(node) == 'file':
         texturePath = cmds.getAttr(node+".fileTextureName")
         filenameExt = os.path.basename(texturePath)
-        filename = os.path.splitext(filenameExt)[0]
+        filename = os.path.splitext(filenameExt)[0]+'_FILE'
         cmds.rename(node, filename)

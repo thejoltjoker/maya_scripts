@@ -1,0 +1,1 @@
+cmds.dirmap(m=('P:/', '/Volumes/macpath/'))
