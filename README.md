@@ -16,3 +16,7 @@ Some expressions I've found useful.
 **sandbox**
 
 Random scripts and snippets that are either unfinished or just not suitable elsewhere. Don't expect anything to run.
+
+**shelves**
+
+My custom shelf. It's a bit messy.
