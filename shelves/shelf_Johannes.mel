@@ -1,4 +1,4 @@
-global proc shelf_Custom () {
+global proc shelf_Johannes () {
     global string $gBuffStr;
     global string $gBuffStr0;
     global string $gBuffStr1;
@@ -14,6 +14,8 @@ global proc shelf_Custom () {
         -preventOverride 0
         -annotation "Display relationships among nodes in your scene graphically" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "Node Editor" 
         -labelOffset 0
@@ -45,6 +47,8 @@ global proc shelf_Custom () {
         -preventOverride 0
         -annotation "List the objects in the scene" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "Outliner" 
         -labelOffset 0
@@ -76,6 +80,8 @@ global proc shelf_Custom () {
         -preventOverride 0
         -annotation "Display and edit connections in shading networks" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "Hypershade" 
         -labelOffset 0
@@ -105,8 +111,43 @@ global proc shelf_Custom () {
         -manage 1
         -visible 1
         -preventOverride 0
+        -annotation "Make connections between object attributes" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Connection Editor" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "CE" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "menuIconWindow.png" 
+        -image1 "menuIconWindow.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "ConnectionEditor" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -enable 1
+        -width 35
+        -height 35
+        -manage 1
+        -visible 1
+        -preventOverride 0
         -annotation "vrayShowVFB();" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "vrayShowVFB();" 
         -labelOffset 0
@@ -138,6 +179,8 @@ global proc shelf_Custom () {
         -preventOverride 0
         -annotation "import imp\n\nfoo = imp.load_source('maya', 'C:/johannes/gdrive/scripts/sequence/maya/menu.py')\nmaya.theSequenceMenu()" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "import imp\n\nfoo = imp.load_source('maya', 'C:/johannes/gdrive/sc..." 
         -labelOffset 0
@@ -169,6 +212,8 @@ global proc shelf_Custom () {
         -preventOverride 0
         -annotation "Delete construction history on the selected object(s)" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "History" 
         -labelOffset 0
@@ -200,6 +245,8 @@ global proc shelf_Custom () {
         -preventOverride 0
         -annotation "Select an object(s)" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "Freeze Transformations" 
         -labelOffset 0
@@ -231,6 +278,8 @@ global proc shelf_Custom () {
         -preventOverride 0
         -annotation "Select an object(s)" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "Center Pivot" 
         -labelOffset 0
@@ -262,6 +311,8 @@ global proc shelf_Custom () {
         -preventOverride 0
         -annotation "def scriptImport():  \n    from sequence.maya.tools import renameTool\n    reload(renameTool)\n    renameTool.renameTool()\n    print '# Sequence menu reloaded'\n\nscriptImport()" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "def scriptImport():  \n    from sequence.maya.tools import rename..." 
         -labelOffset 0
@@ -293,6 +344,8 @@ global proc shelf_Custom () {
         -preventOverride 0
         -annotation "import maya.cmds as cmds\ncmds.pointConstraint( w=1, mo=False );\ncmds.orientConstraint( w=1, mo=False );\ncmds.delete( cn=True );" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "import maya.cmds as cmds\ncmds.pointConstraint( w=1, mo=False );\n..." 
         -labelOffset 0
@@ -323,6 +376,8 @@ global proc shelf_Custom () {
         -preventOverride 0
         -annotation "import maya.cmds as cmds\n\ndef removeVrayEnvironmentPreviewTm():\n\t# Are there any vrayEnvironmentPreviewTm nodes?\n\ttry: \n\t\tcmds.select('vrayEnvironmentPreviewTm*', r=True)\n\t\tnodesFound = cmds.ls( selection=True )\n\t\t\n\t\ttextMessage = 'Nodes found:\\n\\n'\n\t\tfor node in nodesFound:\n\t\t\ttextMessage += node + '\\n'\n\t\ttextMessage += '\\nAre you sure you want to delete them?'\n\t\tresponse = cmds.confirmDialog( title='Confirm', message=textMessage, button=['Yes','No'], defaultButton='Yes', cancelButton='No', dismissString='No' )\n\n\texcept:\n\t\tresponse = cmds.confirmDialog( title='Oh wait', message='No vrayEnvironmentPreviewTm nodes found.', button=['Doh'], defaultButton='Doh', dismissString='Doh' )\n\n\n\t# Delete the nodes selected\n\tif (response == 'Yes'):\n\t\ttry:\n\t\t\tcmds.delete()\n\t\texcept:\n\t\t\tresponse = cmds.confirmDialog( title='Confirm', message='Unable to delete the nodes... (reason unknown) - ask Freddddddooo!', button=['Ok'], defaultButton='Ok', dismissString='Ok' )" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "import maya.cmds as cmds\n\ndef removeVrayEnvironmentPreviewTm():\n..." 
         -labelOffset 0
@@ -354,6 +409,8 @@ global proc shelf_Custom () {
         -preventOverride 0
         -annotation "# replace the \";\" with \":\" for OSX\n# or better yet determine your system and\n# automatically do it. I'll leave that up to you.\n# (hint: try os.name)\n\nimport sys\nfrom pymel.all import *\n\ndef getEnvironment():\n    scriptPaths = mel.getenv(\"MAYA_SCRIPT_PATH\")\n    plugInPaths = mel.getenv(\"MAYA_PLUG_IN_PATH\")\n    pythonPaths = mel.getenv(\"PYTHONPATH\")\n    iconPaths = mel.getenv(\"XBMLANGPATH\")\n    pathPaths = mel.getenv(\"PATH\")\n    sysPaths = sys.path\n    \n    allScriptPaths = scriptPaths.split(\";\")\n    print \"\\nMAYA_SCRIPT_PATHs are:\"\n    for scriptPath in allScriptPaths:\n        print scriptPath\n\n    allPlugInPaths = plugInPaths.split(\";\")\n    print \"\\nMAYA_PLUG_IN_PATHs are:\"\n    for plugInPath in allPlugInPaths:\n        print plugInPath\n        \n    allPythonPaths = pythonPaths.split(\";\")\n    print \"\\nPYTHONPATHs are:\"\n    for pythonPath in allPythonPaths:\n        print pythonPath\n    \n    allIconPaths = iconPaths.split(\";\")\n    print \"\\nXBMLANGPATHs are:\"\n    for iconPath in allIconPaths:\n        print iconPath\n        \n    allPathPaths = pathPaths.split(\";\")\n    print \"\\nPATHs are:\"\n    for pathPath in allPathPaths:\n        print pathPath\n        \n    print \"\\nsys.paths are:\"\n    for sysPath in sysPaths:\n        print sysPath\n\ngetEnvironment()" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "# replace the \";\" with \":\" for OSX\n# or better yet determine you..." 
         -labelOffset 0
@@ -385,6 +442,8 @@ global proc shelf_Custom () {
         -preventOverride 0
         -annotation "def seqMenuImport():  \n    from sequence.maya.tools import renameTool\n    reload(renameTool)\n    renameTool.renameTool()\n    print '# Sequence menu reloaded'\n\nseqMenuImport()" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "def seqMenuImport():  \n    from sequence.maya.tools import renam..." 
         -labelOffset 0
@@ -416,6 +475,8 @@ global proc shelf_Custom () {
         -preventOverride 0
         -annotation "def scriptImport():\n    from sequence.maya.tools.clayblast import clayblast\n    reload(clayblast)\n    print '# Script reloaded'\nscriptImport()" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "def scriptImport():\n    from sequence.maya.tools.clayblast impor..." 
         -labelOffset 0
@@ -447,6 +508,8 @@ global proc shelf_Custom () {
         -preventOverride 0
         -annotation "import maya.cmds as cmds\ncmds.pointConstraint( w=1, mo=False );\ncmds.orientConstraint( w=1, mo=False );\ncmds.delete( cn=True );" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "import maya.cmds as cmds\ncmds.pointConstraint( w=1, mo=False );\n..." 
         -labelOffset 0
@@ -478,6 +541,8 @@ global proc shelf_Custom () {
         -preventOverride 0
         -annotation "Relax Tool: Smooth the surface of a mesh without affecting its shape" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "Relax Tool" 
         -labelOffset 0
@@ -509,6 +574,8 @@ global proc shelf_Custom () {
         -preventOverride 0
         -annotation "Sculpt Tool: Lift a surface" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "Sculpt Tool" 
         -labelOffset 0
@@ -540,6 +607,8 @@ global proc shelf_Custom () {
         -preventOverride 0
         -annotation "Slide edge loops or paths along their neighbouring edges" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "Slide Edge" 
         -labelOffset 0
@@ -571,6 +640,8 @@ global proc shelf_Custom () {
         -preventOverride 0
         -annotation "from sequence.maya.tools import preRendCheck\nreload(preRendCheck)\npreRendCheck.main()" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "from sequence.maya.tools import preRendCheck\nreload(preRendCheck..." 
         -labelOffset 0
@@ -602,6 +673,8 @@ global proc shelf_Custom () {
         -preventOverride 0
         -annotation "Mirror geometry across an axis" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "Mirror Geometry" 
         -labelOffset 0
@@ -633,6 +706,8 @@ global proc shelf_Custom () {
         -preventOverride 0
         -annotation "cmds.delete('redshiftOptions')" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "cmds.delete('redshiftOptions')" 
         -labelOffset 0
@@ -664,6 +739,8 @@ global proc shelf_Custom () {
         -preventOverride 0
         -annotation "import maya.mel as mel\n\nmel.eval('deleteUI unifiedRenderGlobalsWindow;')" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "import maya.mel as mel\n\nmel.eval('deleteUI unifiedRenderGlobalsW..." 
         -labelOffset 0
@@ -695,6 +772,8 @@ global proc shelf_Custom () {
         -preventOverride 0
         -annotation "sel = cmds.ls(sl=True)\nfor i in sel:\n    cmds.lockNode(i, lock=False)\n    cmds.delete(i)" 
         -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
         -align "center" 
         -label "sel = cmds.ls(sl=True)\nfor i in sel:\n    cmds.lockNode(i, lock=F..." 
         -labelOffset 0

@@ -3,7 +3,7 @@ cam_loc_scale.py
 """
 import maya.cmds as cmds
 
-sel = cmds.ls( selection=True)
+sel = cmds.ls(selection=True)
 for i in sel:
     cam = cmds.listRelatives(shapes=True)
 
