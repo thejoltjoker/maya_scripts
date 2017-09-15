@@ -1,5 +1,5 @@
 """
-add_sel_to_displayer.py
+add_sel_to_disp_layer.py
 """
 import maya.cmds as cmds
 
