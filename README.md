@@ -5,6 +5,8 @@ Scripts and other handy maya things.
 Most of the scripts are quite customized for my workflow or previous problems I've had to solve.
 But it might serve as a base for something else hopefully!
 
+I'm learning more for every script I make, and I try to go back and update some scripts with the new things I've learned.
+
 ## Contents
 
 ### scripts
