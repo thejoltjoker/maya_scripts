@@ -17,14 +17,16 @@ Sorted python scripts that should run in Maya.
 
 Some expressions I've found useful.
 
-### sandbox
+### sandbox 🏖
 
 Random scripts and snippets that are either unfinished or just not suitable elsewhere. Don't expect anything to run.
 
-### shelves
+### shelves 📚
 
 My custom shelf. It's a bit messy.
 
 ## Todo
+
 - Clean up a bit...
-    - Add docstrings to explain some stuff
+
+- Add docstrings to explain some stuff

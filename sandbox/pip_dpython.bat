@@ -1,1 +1,0 @@
-"C:/Program Files/Thinkbox/Deadline9/bin/dpython.exe" -m pip install -e git+https://github.com/------/--------------
