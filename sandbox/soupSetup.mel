@@ -1,4 +1,4 @@
 string $version = `about -v`;
-$soup_plugin = "//SEQ-LIVE/live_projects/_Plugins/Maya/SOuP/plug-ins/maya" + $version + "_win";
+$soup_plugin = "/_Plugins/Maya/SOuP/plug-ins/maya" + $version + "_win";
 string $new_plugin_path = $soup_plugin + ";" `getenv "MAYA_PLUG_IN_PATH"`;
 putenv "MAYA_PLUG_IN_PATH" $new_plugin_path;

@@ -1,0 +1,1 @@
+I have not made the scripts in this folder. They come from various sources, and I try to keep the source in the original script file.

@@ -10,8 +10,6 @@ except:
 exportNulls.exportNulls()
 
 
-
-
 def seqMenuImport():
     import sys
     scriptDir = 'C:/johannes/gdrive/scripts'
@@ -23,5 +21,6 @@ def seqMenuImport():
         from sequence.maya import menu as seqMenu
     seqMenu.theSequenceMenu()
     print '# Sequence menu reloaded'
+
 
 seqMenuImport()

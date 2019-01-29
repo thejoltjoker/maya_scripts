@@ -6,8 +6,8 @@ Description of search_and_replace_proxy_filename.py.
 
 import maya.cmds as cmds
 
-SEARCH_STRING = 'D:/The Sequence Group//assets/vrayProxy'
-REPLACE_STRING = '//SEQ-LIVE/live_projects/ConcordSaison/assets/Environment/Patio/Model/work/maya/vrayProxy'
+SEARCH_STRING = 'D:/assets/vrayProxy'
+REPLACE_STRING = 'live_projects/assets/Environment/Patio/Model/work/maya/vrayProxy'
 
 
 def main():
