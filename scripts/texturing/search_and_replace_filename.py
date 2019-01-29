@@ -16,13 +16,15 @@ def main():
     for node in sel_nodes:
         if cmds.nodeType(node) == 'file':
             texture_path = cmds.getAttr(node + ".fileTextureName")
-            new_texture_path = texture_path.replace(search_for, replace_with)
-            cmds.setAttr(
-                "{}.fileTextureName".format(node),
-                new_texture_path,
-                type='string')
+            if search_for in texture_path:
+                new_texture_path = texture_path.replace(
+                    search_for, replace_with)
+                cmds.setAttr(
+                    "{}.fileTextureName".format(node),
+                    new_texture_path,
+                    type='string')
 
-            print "Path changed from " + texture_path + " to " + new_texture_path + " on node " + node
+                print "Path changed from " + texture_path + " to " + new_texture_path + " on node " + node
 
 
 if __name__ == '__main__':
