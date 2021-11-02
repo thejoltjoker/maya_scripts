@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-maya_scripts_folder_to_menu.py
-Description of maya_scripts_folder_to_menu.py.
+scripts_to_menu.py
+Description of scripts_to_menu.py.
 """
 
 import maya.cmds as cmds
@@ -11,15 +11,20 @@ from pprint import pprint
 import logging
 
 SCRIPTS_PATH = r'C:\Users\JohannesAndersson\OneDrive - Frank Valiant AB\Desktop\scripts\maya_scripts\scripts'
+ICONS_PATH = os.path.join(SCRIPTS_PATH, '.icons')
 
 
 def get_icon(path):
     """Get the icon for the given file or directory"""
-    if os.path.isdir(path):
-        icon = os.path.join(path, os.path.basename(path) + '.png')
-    else:
-        icon = os.path.splitext(path)[0] + '.png'
 
+    # If folder, use the image inside with the same name
+    if os.path.isdir(path):
+        icon = os.path.join(ICONS_PATH, os.path.basename(path) + '.png')
+    else:
+        # If file just use image with same name in same folder
+        icon = os.path.join(ICONS_PATH, os.path.splitext(os.path.basename(path))[0] + '.png')
+
+    # If image doesn't exist, use nothing
     if not os.path.isfile(icon):
         icon = ''
 
@@ -28,9 +33,9 @@ def get_icon(path):
 
 def create_submenu(parent, structure):
     """Create a submenu"""
-    for k in sorted(structure, key=structure.get, reverse=True):
+    for k in sorted(structure, key=structure.get, reverse=False):
         v = structure.get(k)
-        print k + ': ' + str(v)
+        logging.debug(k + ': ' + str(v))
         icon = get_icon(k)
 
         if v:
@@ -79,6 +84,7 @@ def create_menu():
                          tearOff=True)
     cmds.menuItem(parent=menu_id,
                   label='Reload',
+                  i=os.path.join(ICONS_PATH, 'reload.png'),
                   enable=False)
     cmds.menuItem(divider=True)
 
@@ -108,5 +114,7 @@ def path_to_dict(path):
 
 
 if __name__ == '__main__':
+    logger = logging.getLogger()
+    logger.setLevel(logging.DEBUG)
     pprint(path_to_dict(SCRIPTS_PATH))
     create_menu()

@@ -1,8 +1,6 @@
 import maya.cmds as cmds
 
 # select all locators
-
-
 def selectLocators():
     selNodes = "_LOC"
     allObjs = cmds.ls()

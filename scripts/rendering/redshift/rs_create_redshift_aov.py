@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 """
 rs_create_redshift_aov.py
+
 Description of rs_create_redshift_aov.py.
 """
 import maya.mel as mel
