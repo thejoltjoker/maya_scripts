@@ -6,6 +6,7 @@ import logging
 import maya.cmds as cmds
 import maya.mel as mel
 import random
+import math
 
 import logging
 
@@ -64,20 +65,27 @@ def get_all_mat_ids():
 
 def assign_obj_id(node):
     """"Assign object id to a node"""
-    obj_id = get_next_obj_id()
+    if cmds.attributeQuery('rsObjectId', node=node, exists=True):
+        obj_id = get_next_obj_id()
+        if cmds.nodeType(node) == 'RedshiftObjectId':
+            cmds.setAttr(node + '.objectId', obj_id)
+            logging.info('Assigned obj id {0} to {1}'.format(cmds.getAttr(node + '.objectId'), node))
+        else:
+            shapes = cmds.listRelatives(node, shapes=True)
+            if shapes:
+                cmds.setAttr(shapes[0] + '.rsObjectId', obj_id)
+                logging.info('Assigned obj id {0} to {1}'.format(cmds.getAttr(shapes[0] + '.objectId'), shapes[0]))
+        return obj_id
+    return None
 
-    if cmds.nodeType(node) == 'RedshiftObjectId':
-        cmds.setAttr(node + '.objectId', obj_id)
-        logging.info('Assigned obj id {0} to {1}'.format(cmds.getAttr(node + '.objectId'), node))
-    else:
-        shapes = cmds.listRelatives(node, shapes=True)
-        cmds.setAttr(shapes[0] + '.rsObjectId', obj_id)
-        logging.info('Assigned obj id {0} to {1}'.format(cmds.getAttr(shapes[0] + '.objectId'), shapes[0]))
 
-
-def assign_obj_ids():
-    for node in cmds.ls(sl=True):
-        assign_obj_id(node)
+def assign_obj_ids(nodes):
+    """Assign object ids to a list of nodes"""
+    obj_ids = []
+    for node in nodes:
+        obj_id = assign_obj_id(node)
+        obj_ids.append(obj_id)
+    return obj_ids
 
 
 def all_puzzle_mattes():
@@ -129,6 +137,50 @@ def assigned_obj_ids():
     assigned_ids = []
     for k, v in puzzle_matte_channels().items():
         pass
+
+
+def create_obj_matte_aov(name=None, red_id=None, green_id=None, blue_id=None):
+    aov_node = cmds.rsCreateAov(type='Puzzle Matte')
+    cmds.setAttr(aov_node + '.mode', 1)
+    if name:
+        cmds.setAttr(aov_node + '.name', name, type='string')
+    if red_id:
+        cmds.setAttr(aov_node + '.redId', red_id)
+    if green_id:
+        cmds.setAttr(aov_node + '.redId', red_id)
+    if blue_id:
+        cmds.setAttr(aov_node + '.redId', red_id)
+    return aov_node
+
+
+def list_slicer(seq, size):
+    return (seq[pos:pos + size] for pos in range(0, len(seq), size))
+
+
+def obj_mattes_from_selection():
+    selection = cmds.ls(sl=True)
+
+    # Assign obj ids
+    obj_ids = assign_obj_ids(selection)
+
+    # Create mattes
+    mattes = []
+
+    for n, i in enumerate(obj_ids):
+        if n % 3 == 1:
+            channel = aov + 'greenId'
+        elif n % 3 == 2:
+            channel = aov + 'blueId'
+        else:
+            aov = create_obj_matte_aov()
+            mattes.append(aov)
+            channel = aov + 'redId'
+
+        # Assign id
+        cmds.setAttr(channel, i)
+        logging.info('Object id {i} was assigned to {ch}'.format(i=i, ch=channel))
+
+    # Write ids in channels to notes
 
 
 # def createPuzzleMattes():
