@@ -121,14 +121,21 @@ def assign_mattes_to_obj_ids():
     mattes = puzzle_matte_channels()
 
     empty_channels = empty_puzzle_matte_channels()
-    for obj_id in get_all_obj_ids():
-        pass
+    while len(empty_channels) >= 1:
+        for obj_id in get_all_obj_ids():
+            if empty_channels:
+
+
 
 
 def assigned_obj_ids():
     assigned_ids = []
-    for k, v in puzzle_matte_channels().items():
-        pass
+    for node, channels in puzzle_matte_channels().items():
+        for ch in channels.values():
+            assigned_ids.append(ch)
+    assigned_ids = list(dict.fromkeys(assigned_ids))
+    logging.debug('Assigned ids are {0}'.format(', '.join([str(x) for x in assigned_ids])))
+    return assigned_ids
 
 
 # def createPuzzleMattes():
@@ -269,7 +276,7 @@ def assigned_obj_ids():
 if __name__ == '__main__':
     print(get_next_obj_id())
     print(get_all_obj_ids())
-    print(assign_obj_ids())
+    # print(assign_obj_ids())
     print(all_puzzle_mattes())
     print(obj_ids_in_puzzle_mattes())
     print(puzzle_matte_channels())
