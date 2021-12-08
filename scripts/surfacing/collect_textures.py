@@ -25,19 +25,19 @@ def copy_files(destination_path=None):
     else:
         path = destination_path
     textures = list_textures()
-    print 'Copying ' + str(len(textures)) + ' files'
+    print('Copying ' + str(len(textures)) + ' files')
     for n, f in enumerate(textures, 1):
         try:
-            print str(n) + '/' + str(len(textures))
+            print(str(n) + '/' + str(len(textures)))
             shutil.copy2(f, os.path.join(path, os.path.basename(f)))
-            print 'Successfully copied ' + os.path.basename(f) + ' to ' + os.path.join(path, os.path.basename(f))
+            print('Successfully copied ' + os.path.basename(f) + ' to ' + os.path.join(path, os.path.basename(f)))
         except:
             failed.append(f)
 
     if failed:
-        print 'Failed to copy the following textures:'
+        print('Failed to copy the following textures:')
         for i in failed:
-            print i
+            print(i)
     # print destination_path
 
 
