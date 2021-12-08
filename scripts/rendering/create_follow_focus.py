@@ -3,7 +3,7 @@
 create_follow_focus.py
 Description of create_follow_focus.py.
 """
-
+import os
 import maya.cmds as cmds
 
 
@@ -63,5 +63,9 @@ def create_follow_focus():
         cmds.warning("Nothing is selected")
 
 
-if __name__ == '__main__':
+def main():
     create_follow_focus()
+
+
+if __name__ == '__main__':
+    main()

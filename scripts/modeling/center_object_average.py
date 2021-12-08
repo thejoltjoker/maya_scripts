@@ -3,6 +3,8 @@
 center_object_average.py
 Description of center_object_average.py.
 """
+from functools import reduce
+
 import maya.cmds as cmds
 
 
@@ -32,15 +34,15 @@ def main():
     yAverage = reduce(lambda x, y: x + y, vertPosY) / len(vertPosY)
     zAverage = reduce(lambda x, y: x + y, vertPosZ) / len(vertPosZ)
 
-    print xAverage
-    print yAverage
-    print zAverage
+    print(xAverage)
+    print(yAverage)
+    print(zAverage)
     cmds.setAttr(centerObj + '.translateX', xAverage)
     cmds.setAttr(centerObj + '.translateY', yAverage)
     cmds.setAttr(centerObj + '.translateZ', zAverage)
 
     cmds.select(centerObj)
-    print "END"
+    print("END")
 
 
 if __name__ == '__main__':

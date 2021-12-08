@@ -7,11 +7,22 @@ Description of scripts_to_menu.py.
 
 import maya.cmds as cmds
 import os
+import re
 from pprint import pprint
 import logging
 
 SCRIPTS_PATH = r'C:\Users\JohannesAndersson\OneDrive - Frank Valiant AB\Desktop\scripts\maya_scripts\scripts'
 ICONS_PATH = os.path.join(SCRIPTS_PATH, '.icons')
+
+
+#
+# from importlib import reload  # Python 3.4+
+#
+# rn = reload(rn)
+
+
+def reload(*args, **kwargs):
+    create_menu()
 
 
 def get_icon(path):
@@ -31,23 +42,41 @@ def get_icon(path):
     return icon
 
 
+def get_docstring(file):
+    logging.debug(file)
+    with open(file, "r") as f:
+        content = f.read()  # read file
+        pattern = re.compile(r'"""([\s\S]*?)"""')  # create docstring pattern
+    found = re.findall(pattern, content)
+    if found:
+        return found[0].strip().replace('\n', '- ')
+
+
 def create_submenu(parent, structure):
     """Create a submenu"""
-    for k in sorted(structure, key=structure.get, reverse=False):
+    for k in sorted(structure):
+        parsed_name = parse_filename(k)
+
+        # Get annotation from docstring
+        annotation = parsed_name
+        if os.path.isfile(k):
+            annotation = get_docstring(k)
+
         v = structure.get(k)
         logging.debug(k + ': ' + str(v))
+        # print k + ': ' + str(v)
         icon = get_icon(k)
 
         if v:
             menu_item = cmds.menuItem(subMenu=True,
                                       parent=parent,
-                                      label=parse_filename(k),
+                                      label=parsed_name,
                                       fi=icon,
                                       i=icon,
                                       tearOff=True)
             # Create title for sub menu
             cmds.menuItem(parent=menu_item,
-                          label=parse_filename(k),
+                          label=parsed_name,
                           fi=icon,
                           i=icon,
                           enable=False)
@@ -56,18 +85,20 @@ def create_submenu(parent, structure):
             create_submenu(menu_item, v)
         else:
             if k.endswith('.py'):
+                # print k
                 with open(k, 'r') as p:
                     pscript = p.readlines()
                 menu_item = cmds.menuItem(parent=parent,
-                                          label=parse_filename(k),
-                                          # i=icon,
+                                          label=parsed_name,
+                                          i=icon,
+                                          annotation=annotation,
                                           command='\n'.join(pscript))
     return
 
 
 def create_menu():
     structure = path_to_dict(SCRIPTS_PATH)
-    pprint(structure)
+    # pprint(structure)
     menu_id = 'custom_scripts_menu'
     # enhancify_maya_path = os.path.dirname(os.path.realpath(__file__))
     # maya_menu_path = os.path.dirname(os.path.realpath(__file__))
@@ -80,12 +111,13 @@ def create_menu():
     menu_obj = cmds.menu(menu_id,
                          allowOptionBoxes=True,
                          parent='MayaWindow',
-                         label='Custom Scripts',
+                         label='Script Kiddie',
                          tearOff=True)
     cmds.menuItem(parent=menu_id,
                   label='Reload',
                   i=os.path.join(ICONS_PATH, 'reload.png'),
-                  enable=False)
+                  enable=True,
+                  c=reload)
     cmds.menuItem(divider=True)
 
     create_submenu(menu_id, structure)
@@ -114,7 +146,7 @@ def path_to_dict(path):
 
 
 if __name__ == '__main__':
-    logger = logging.getLogger()
+    logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)
-    pprint(path_to_dict(SCRIPTS_PATH))
+    # pprint(path_to_dict(SCRIPTS_PATH))
     create_menu()

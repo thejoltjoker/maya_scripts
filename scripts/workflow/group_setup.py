@@ -13,32 +13,33 @@ def add_suffix(name, suffix, sep='_'):
 
 def create_groups(parent, groups, suffix='grp', sep='_', suffix_uppercase=False):
     """docstring for main"""
-    suffix = 'grp'
+    nodes = []
     if suffix_uppercase:
         suffix = suffix.upper()
 
     # Create parent group
     parent = add_suffix(parent, suffix, sep)
     cmds.group(em=True, name=parent)
+    nodes.append(parent)
 
     # create groups
-    for g in groups:
-        cmds.group(em=True, name=add_suffix(g, suffix, sep))
-        cmds.parent(g, parent)
+    for n in groups:
+        group = cmds.group(em=True, name=add_suffix(n, suffix, sep))
+        cmds.parent(group, parent)
 
-    groups.append(parent)
+        nodes.append(group)
 
     # lock group attributes
-    for l in groups:
-        cmds.setAttr(l + '.translateX', lock=True)
-        cmds.setAttr(l + '.translateY', lock=True)
-        cmds.setAttr(l + '.translateZ', lock=True)
-        cmds.setAttr(l + '.scaleX', lock=True)
-        cmds.setAttr(l + '.scaleY', lock=True)
-        cmds.setAttr(l + '.scaleZ', lock=True)
-        cmds.setAttr(l + '.rotateX', lock=True)
-        cmds.setAttr(l + '.rotateY', lock=True)
-        cmds.setAttr(l + '.rotateZ', lock=True)
+    for n in nodes:
+        cmds.setAttr(n + '.translateX', lock=True)
+        cmds.setAttr(n + '.translateY', lock=True)
+        cmds.setAttr(n + '.translateZ', lock=True)
+        cmds.setAttr(n + '.scaleX', lock=True)
+        cmds.setAttr(n + '.scaleY', lock=True)
+        cmds.setAttr(n + '.scaleZ', lock=True)
+        cmds.setAttr(n + '.rotateX', lock=True)
+        cmds.setAttr(n + '.rotateY', lock=True)
+        cmds.setAttr(n + '.rotateZ', lock=True)
 
 
 if __name__ == '__main__':
