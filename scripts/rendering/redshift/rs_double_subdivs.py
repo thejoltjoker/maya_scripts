@@ -30,6 +30,8 @@ def main():
                  max_samples * 2)
     cmds.setAttr("redshiftOptions.singleScatteringSamplesOverrideReplace",
                  max_samples * 2)
+    cmds.setAttr("redshiftOptions.multipleScatteringSamplesOverrideReplace",
+                 max_samples * 2)
     cmds.setAttr("redshiftOptions.bruteForceGINumRays",
                  max_samples * 2)
 

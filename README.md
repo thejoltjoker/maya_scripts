@@ -9,11 +9,11 @@ I'm learning more for every script I make, and I try to go back and update some 
 
 ## Contents
 
-### scripts
+### scripts 📜
 
 Sorted python scripts that should run in Maya.
 
-### expressions
+### expressions 🔢
 
 Some expressions I've found useful.
 

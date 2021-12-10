@@ -12,14 +12,14 @@ def assign_random_obj_id():
     obj = sel[0]
 
     if cmds.nodeType(obj) == 'RedshiftObjectId':
-        print 'objid object'
+        print('objid object')
         cmds.setAttr(obj+'.objectId', random_id)
-        print obj + ' = ' + str(cmds.getAttr(obj+'.objectId'))
+        print(obj + ' = ' + str(cmds.getAttr(obj + '.objectId')))
     else:
         obj_list = cmds.listRelatives(sel[0], shapes=True)
         obj = obj_list[0]
         cmds.setAttr(obj+'.rsObjectId', random_id)
-        print obj + ' = ' + str(cmds.getAttr(obj+'.rsObjectId'))
+        print(obj + ' = ' + str(cmds.getAttr(obj + '.rsObjectId')))
 
 
 if __name__ == '__main__':
