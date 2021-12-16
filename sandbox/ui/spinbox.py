@@ -1,4 +1,4 @@
-from PySide import QtGui, QtCore
+from PySide2 import QtGui, QtCore
 
 class Window(QtGui.QWidget):
     def __init__(self, parent = None):
@@ -27,6 +27,6 @@ class Window(QtGui.QWidget):
     def myFunction(self):
         # Getting current control calling this function with self.sender()
         # Print out the control's internal name, its type, and its value
-        print "{0}: type {1}, value {2}".format( self.sender().objectName(), type( self.sender() ), self.sender().value() )
+        print( "{0}: type {1}, value {2}".format( self.sender().objectName(), type( self.sender() ), self.sender().value() ))
 
 win = Window()

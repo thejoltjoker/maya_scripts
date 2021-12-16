@@ -8,13 +8,13 @@ for transform in cmds.ls(sl=1):
     print("transform = {}".format(transform))
 
     proxy_id = int(re.findall(r"\d+", transform)[0])
-    print("proxy_id = {}".format(proxy_id*4))
+    print("proxy_id = {}".format(proxy_id * 4))
 
     if not cmds.attributeQuery('proxyID', node=transform, exists=True):
         cmds.addAttr(longName="proxyID", attributeType='long', k=True)
 
     id_multiplier = 3
-    cmds.setAttr('{}.proxyID'.format(transform), proxy_id*id_multiplier)
+    cmds.setAttr('{}.proxyID'.format(transform), proxy_id * id_multiplier)
 
     shape = cmds.listRelatives(transform)[0]
     print("shape = {}".format(shape))
@@ -29,12 +29,12 @@ for transform in cmds.ls(sl=1):
     # create multDivide node
     mult_node = cmds.shadingNode(
         'multiplyDivide', asUtility=1, n='{}_MULT'.format(b_name))
-    print mult_node
+    print(mult_node)
 
     # create sum node
     sum_node = cmds.shadingNode(
         'plusMinusAverage', asUtility=1, n='{}_SUM'.format(b_name))
-    print sum_node
+    print(sum_node)
 
     # connect nodes
     # Transform to multdiv
@@ -66,7 +66,6 @@ for transform in cmds.ls(sl=1):
     # rename proxy
     cmds.rename(proxy_node, '{}_PROXY'.format(b_name))
 
-
 # //////////////////////////////////////////////////////////////////
 # //////////////////////////////////////////////////////////////////
 # //////////////////////////////////////////////////////////////////
@@ -90,10 +89,9 @@ for transform in cmds.ls(sl=1):
     print("transform = {}".format(transform))
 
     proxy_id = int(re.findall(r"\d+", transform)[0])
-    print("proxy_id = {}".format(proxy_id*multiplier))
+    print("proxy_id = {}".format(proxy_id * multiplier))
 
-    cmds.setAttr('{}.proxyID'.format(transform), proxy_id*multiplier)
-
+    cmds.setAttr('{}.proxyID'.format(transform), proxy_id * multiplier)
 
 # # connect attributes
 # sel = cmds.ls(sl=1)

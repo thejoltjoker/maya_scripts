@@ -42,5 +42,9 @@ def create_groups(parent, groups, suffix='grp', sep='_', suffix_uppercase=False)
         cmds.setAttr(n + '.rotateZ', lock=True)
 
 
-if __name__ == '__main__':
+def main():
     create_groups('scene', ['geo', 'light', 'cam', 'sim'])
+
+
+if __name__ == '__main__':
+    main()

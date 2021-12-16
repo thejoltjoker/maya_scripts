@@ -3,9 +3,16 @@
 """
 script_name.py
 Description of script_name.py.
+Credit to https://www.akeric.com/blog/?p=1087 for uninstance function.
 """
+import logging
 import os
 import maya.cmds as cmds
+import maya.mel as mel
+import maya.OpenMaya as om
+
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(name)s %(levelname)s:%(message)s')
+logger = logging.getLogger(__name__)
 
 SUFFIXES = {'RedshiftCurvature': 'rsCurvature',
             'RedshiftMatteParameters': 'rsMatteParameters',
@@ -88,21 +95,29 @@ SUFFIXES = {'RedshiftCurvature': 'rsCurvature',
             'volumeLight': 'lgt'}
 
 
-def name_from_connections(node):
-    for n in cmds.ls(sl=True):
-        print(cmds.listConnections(n))
+def get_instances():
+    instances = []
+    iterDag = om.MItDag(om.MItDag.kBreadthFirst)
+    while not iterDag.isDone():
+        instanced = om.MItDag.isInstanced(iterDag)
+        if instanced:
+            instances.append(iterDag.fullPathName())
+        iterDag.next()
+    return instances
 
 
-def name_from_filename(node):
-    if cmds.nodeType(node) == 'file':
-        texturePath = cmds.getAttr(node + ".fileTextureName")
-        filenameExt = os.path.basename(texturePath)
-        filename = os.path.splitext(filenameExt)[0] + '_FILE'
-        cmds.rename(node, filename)
+def uninstance():
+    instances = get_instances()
+    logger.info('Found {0} instances'.format(len(instances)))
+    while len(instances):
+        parent = cmds.listRelatives(instances[0], parent=True, fullPath=True)[0]
+        cmds.duplicate(parent, renameChildren=True)
+        cmds.delete(parent)
+        instances = get_instances()
+    return instances
 
 
 def get_suffix(node):
-    print(node)
     node_type = cmds.nodeType(node)
     if node_type == 'transform':
         node_shapes = cmds.listRelatives(node, s=True, path=True)
@@ -127,15 +142,16 @@ def clean_name(name):
     return name.replace(' ', '_')
 
 
-def rename_selection(name):
+def rename(name, nodes):
     renamed = []
     # Get selection and sort it
-    nodes = cmds.ls(sl=True, l=True)
     sorted_sel = sorted(nodes, key=len, reverse=True)
+
+    # Clean illegal characters
+    name = clean_name(name)
 
     # Loop through selected objects
     for node in sorted_sel:
-        print('Renaming {0}'.format(node))
         suffix = get_suffix(node)
 
         if len(sorted_sel) > 1:
@@ -148,35 +164,37 @@ def rename_selection(name):
         # Rename nodes
         renamed_node = cmds.rename(node, new_name)
         renamed.append(renamed_node)
+        logger.info('Renamed {0} to {1}'.format(node, renamed_node))
 
     return renamed
 
 
-def blank_rename():
-    # Get selection
-    renamed = []
-    sel = cmds.ls(sl=True)
-
-    # Loop through selected objects
-    for node in sel:
-        node_type = cmds.nodeType(node)
-        suffix = get_suffix(node)
-        name = name_from_connections(node)
-
-        if len(sel) > 1:
-            new_name = increment_name(name, suffix)
-        else:
-            new_name = '_'.join([name, suffix])
-            if cmds.objExists(new_name):
-                new_name = increment_name(name, suffix)
-
-        # Rename nodes
-        renamed_node = cmds.rename(node, new_name)
-        renamed.append(renamed_node)
-    return renamed
+def expand_selection():
+    cmds.select(hi=True)
+    nodes = cmds.ls(sl=True, dag=True, allPaths=True, long=True)
+    logger.info('{} nodes selected'.format(len(nodes)))
+    return nodes
 
 
-def main():
+def main(name):
+    """docstring for main"""
+    # Convert instances
+    # mel.eval('ConvertInstanceToObject;')
+    uninstance()
+
+    # Fix names and rename
+    nodes = expand_selection()
+    renamed = rename(name, nodes)
+
+    # Select renamed nodes
+    cmds.select(renamed)
+
+    # Rename uv set
+    logger.info('Renaming UV sets to map1')
+    cmds.polyUVSet(rename=True, newUVSet='map1')
+
+
+if __name__ == '__main__':
     name_dialog = cmds.promptDialog(
         title='Rename',
         message='Enter new name:',
@@ -188,12 +206,8 @@ def main():
     if name_dialog == 'OK':
         name = cmds.promptDialog(query=True, text=True)
         if name:
-            rename_selection(name)
+            main(name)
         else:
             cmds.warning("The name can't be blank")
     else:
-        print('User cancelled renaming')
-
-
-if __name__ == '__main__':
-    main()
+        logger.info('User cancelled renaming')

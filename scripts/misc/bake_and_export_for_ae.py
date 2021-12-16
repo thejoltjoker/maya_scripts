@@ -10,7 +10,7 @@ import maya.mel as mel
 from sys import platform as systemOS
 
 if systemOS == "linux" or systemOS == "linux2":
-     print "Unable to set server path"
+     print("Unable to set server path")
 elif systemOS == "darwin":
      mayaScriptPath = '/Volumes/assets/Python'
 elif systemOS == "win32":
@@ -18,7 +18,7 @@ elif systemOS == "win32":
 
 # set units to foot
 cmds.currentUnit( linear='foot' )
-print "Units set to foot."
+print("Units set to foot.")
 
 # source AE export
 mel.eval('source "%s/sequence/maya/tools/rcExport2AE/rcExport2AE_launch.mel"' % mayaScriptPath)
@@ -32,7 +32,7 @@ for obj in allObjs:
     if obj.endswith(selNodes):
         cmds.select(obj, add=True)
 
-print "Locators selected."
+print("Locators selected.")
 
 # select renderable cameras
 allCams = cmds.ls(ca=True)
@@ -54,7 +54,7 @@ for obj in allObjs:
     if obj.endswith(selNodes):
         cmds.select(obj, add=True)
 
-print "Baked nodes selected."
+print("Baked nodes selected.")
 
 multipleFilters = "Maya Files (*.ma *.mb);;Maya ASCII (*.ma);;Maya Binary (*.mb);;All Files (*.*)"
 filename = cmds.fileDialog2(fileFilter=multipleFilters, dialogStyle=2)

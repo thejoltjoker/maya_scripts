@@ -1,6 +1,7 @@
 import maya.cmds as cmds
 from functools import partial
 
+
 class multiAttrAdjust(object):
     def __init__(self, *args):
         super(multiAttrAdjust, self).__init__(*args)
@@ -35,5 +36,5 @@ class multiAttrAdjust(object):
         for texture in selTextures:
             cmds.setAttr(attrOutput, valOutput)
 
-    def test():
+    def test(self):
         cmds.warning("SUCCESS")

@@ -292,6 +292,10 @@ def furthest_vertex_from_transform(target, vertices):
         distance_from_target = distance_between(target_pos, ppos)
         distances.append((v, distance_from_target))
 
+        logger.info(v)
+        logger.info(ppos)
+        logger.info(distance_from_target)
+        logger.info(distances)
     furthest_away = max(distances, key=lambda item: item[1])
     return furthest_away
 
@@ -319,29 +323,34 @@ def zdepth_distance():
 
     # Get object furthest from camera
     objects = all_geo_transforms()
-    furthest_object = furthest_transform_from_transform(camera, objects)
-    logger.info(f'Furthest vertex is {furthest_object[0]} at a distance of {furthest_object[1]}')
+    if objects:
+        furthest_object = furthest_transform_from_transform(camera, objects)
+        logger.info(f'Furthest vertex is {furthest_object[0]} at a distance of {furthest_object[1]}')
 
-    # Get vertex furthest from camera
-    verts = cmds.ls(furthest_object[0] + '.vtx[*]', fl=1)
-    furthest_vert = furthest_vertex_from_transform(camera, verts)
-    logger.info(f'Furthest vertex is {furthest_vert[0]} at a distance of {furthest_vert[1]}')
-    distance = furthest_vert[1] * 1.25
+        # Get vertex furthest from camera
+        verts = cmds.ls(furthest_object[0] + '.vtx[*]', fl=1)
+        if verts:
+            furthest_vert = furthest_vertex_from_transform(camera, verts)
+            logger.info(f'Furthest vertex is {furthest_vert[0]} at a distance of {furthest_vert[1]}')
+            distance = furthest_vert[1] * 1.25
+        else:
+            distance = furthest_object[1] * 1.25
     return distance
 
 
 def main():
-    if not renderer_is_redshift():
-        confirmation = cmds.confirmDialog(title='Set render engine',
-                                          message='Do you want to set Redshift as render engine?', button=['Yes', 'No'],
-                                          defaultButton='Yes',
-                                          cancelButton='No', dismissString='No')
-        if confirmation == 'Yes':
-            set_redshift_renderer()
-        else:
-            cmds.warning('Redshift is not the current render engine')
-            return
-    create_aov_switch()
+    print(zdepth_distance())
+    # if not renderer_is_redshift():
+    #     confirmation = cmds.confirmDialog(title='Set render engine',
+    #                                       message='Do you want to set Redshift as render engine?', button=['Yes', 'No'],
+    #                                       defaultButton='Yes',
+    #                                       cancelButton='No', dismissString='No')
+    #     if confirmation == 'Yes':
+    #         set_redshift_renderer()
+    #     else:
+    #         cmds.warning('Redshift is not the current render engine')
+    #         return
+    # create_aov_switch()
 
 
 if __name__ == '__main__':
