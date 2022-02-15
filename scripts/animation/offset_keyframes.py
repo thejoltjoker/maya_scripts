@@ -26,3 +26,8 @@ for curve in all_curves:
 frame_offset_value = 1
 
 offset_anim_keyframe(valid_curves, frame_offset_value)
+def main():
+    # TODO
+    pass
+if __name__ == '__main__':
+    main()

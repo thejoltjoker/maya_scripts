@@ -244,7 +244,7 @@ global proc shelf_Johannes () {
         -style "iconOnly" 
         -marginWidth 1
         -marginHeight 1
-        -command "import imp\n\nfoo = imp.load_source('maya', 'C:/Users/JohannesAndersson/OneDrive - Frank Valiant AB/Desktop/scripts/maya_scripts/scripts_to_menu.py')\nmaya.create_menu()" 
+        -command "import imp\nfoo = imp.load_source('maya', 'C:/Users/JohannesAndersson/OneDrive - Frank Valiant AB/Desktop/scripts/maya_scripts/scripts_to_menu.py')\nmaya.create_menu()" 
         -sourceType "python" 
         -commandRepeatable 1
         -flat 1
@@ -343,7 +343,7 @@ global proc shelf_Johannes () {
         -font "plainLabelFont" 
         -imageOverlayLabel "CP" 
         -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.25 
+        -overlayLabelBackColor 0 0 0 0.3 
         -image "menuIconModify.png" 
         -image1 "menuIconModify.png" 
         -style "iconOnly" 
@@ -991,41 +991,6 @@ global proc shelf_Johannes () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "from sequence.maya.tools import renamer\nreload(renamer)\nrenamer.Renamer()" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "from sequence.maya.tools import renamer\nreload(renamer)\nrenamer...." 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "renamer" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "pythonFamily.png" 
-        -image1 "pythonFamily.png" 
-        -style "iconOnly" 
-        -marginWidth 1
-        -marginHeight 1
-        -command "from sequence.maya.tools import renamer\nreload(renamer)\nrenamer.Renamer()" 
-        -sourceType "python" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
         -annotation "#!/usr/bin/env python\n\"\"\"\ntoggle_motion_blur.py\nDescription of toggle_motion_blur.py.\n\"\"\"\nimport maya.cmds as cmds\n\nfont_color = '#f9da30'\nif cmds.getAttr('redshiftOptions.motionBlurEnable'):\n    cmds.setAttr('redshiftOptions.motionBlurEnable', 0)\n    cmds.inViewMessage(\n        smg='<font color={}>Motion blur:</font> Disabled'.format(\n            font_color),\n        bkc=0x00262626,\n        pos='topRight',\n        fade=True,\n        a=0.5)\nelse:\n    cmds.setAttr('redshiftOptions.motionBlurEnable', 1)\n    cmds.inViewMessage(\n        smg='<font color={}>Motion blur:</font> Enabled'.format(\n            font_color),\n        bkc=0x00262626,\n        pos='topRight',\n        fade=True,\n        a=0.5)\n" 
         -enableBackground 0
         -backgroundColor 0 0 0 
@@ -1061,41 +1026,6 @@ global proc shelf_Johannes () {
         -manage 1
         -visible 1
         -preventOverride 0
-        -annotation "select -hi" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "select -hi" 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "selHi" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "commandButton.png" 
-        -image1 "commandButton.png" 
-        -style "iconOnly" 
-        -marginWidth 1
-        -marginHeight 1
-        -command "select -hi;" 
-        -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
         -annotation "Redshift Render View" 
         -enableBackground 0
         -backgroundColor 0 0 0 
@@ -1117,6 +1047,352 @@ global proc shelf_Johannes () {
         -marginHeight 1
         -command "redshiftRvShow" 
         -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "import maya.app.renderSetup.model.override as override\nimport maya.app.renderSetup.model.selector as selector\nimport maya.app.renderSetup.model.collection as collection\nimport maya.app.renderSetup.model.renderLayer as renderLayer\nimport maya.app.renderSetup.model.renderSetup as renderSetup\nimport maya.cmds as cmds\n\nrs = renderSetup.instance()\nrs.clearAll()" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "import maya.app.renderSetup.model.override as override\nimport ma..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya.app.renderSetup.model.override as override\nimport maya.app.renderSetup.model.selector as selector\nimport maya.app.renderSetup.model.collection as collection\nimport maya.app.renderSetup.model.renderLayer as renderLayer\nimport maya.app.renderSetup.model.renderSetup as renderSetup\nimport maya.cmds as cmds\n\nrs = renderSetup.instance()\nrs.clearAll()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "from maya_scripts.scripts.experimental import redshift_mattes\nreload(redshift_mattes)\nredshift_mattes.main()" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "from maya_scripts.scripts.experimental import redshift_mattes\nre..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "skReload" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "from importlib import reload\n\nfrom maya_scripts.scripts.rendering import create_follow_focus\nreload(create_follow_focus)\ncreate_follow_focus.main()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "from importlib import reload\n\nfrom rafiki.rafiki.maya import menu as rafiki_menu\nreload(rafiki_menu)\nrafiki_menu.create_menu()\n\n\n\n\n" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "from importlib import reload\n\nfrom rafiki.rafiki.maya import men..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "rafiki" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "from importlib import reload\n\nfrom rafiki.maya import menu as rafiki_menu\nreload(rafiki_menu)\nrafiki_menu.RafikiMenu()\n\n\n\n\n" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "mel.eval(\"redshiftUpdateActiveAovList()\")" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "mel.eval(\"redshiftUpdateActiveAovList()\")" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "updateAov" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "redshiftUpdateActiveAovList()" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "import maya.cmds as cmds\nfrom importlib import reload\n\nfrom maya_scripts.scripts.experimental import cleanup_cad\nreload(cleanup_cad)\ncleanup_cad.uninstance()" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "import maya.cmds as cmds\nfrom importlib import reload\n\nfrom maya..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "cleanCad" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya.cmds as cmds\nfrom importlib import reload\n\nfrom maya_scripts.scripts.experimental import cleanup_cad\nreload(cleanup_cad)\ncleanup_cad.main('test')" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "from importlib import reload\n\nfrom rafiki.maya.tools.cad_cleaner import cad_cleaner\nreload(cad_cleaner)\ncad_cleaner.CadCleaner()" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "from importlib import reload\n\nfrom rafiki.maya.tools.cad_cleaner..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "from importlib import reload\n\nfrom rafiki.maya.tools.cad_cleaner import app as cc\nreload(cc)\ncc.CadCleaner()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "import maya.cmds as cmds\nfrom importlib import reload\n\nfrom maya_scripts.scripts.surfacing import fix_color_space\nreload(fix_color_space)\nfix_color_space.main()" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "import maya.cmds as cmds\nfrom importlib import reload\n\nfrom maya..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "fixCspace" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya.cmds as cmds\nfrom importlib import reload\n\nfrom maya_scripts.scripts.standalone import fix_color_space_standalone\nreload(fix_color_space_standalone)\nfix_color_space_standalone.browse_and_run()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "import maya.cmds as cmds\nfrom importlib import reload\n\nfrom maya_scripts.scripts.rendering import furthest_vert_from_camera\nreload(furthest_vert_from_camera)\nfurthest_vert_from_camera.main()" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "import maya.cmds as cmds\nfrom importlib import reload\n\nfrom maya..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya.cmds as cmds\nfrom importlib import reload\n\nfrom maya_scripts.scripts.rendering import furthest_vert_from_camera\nreload(furthest_vert_from_camera)\nfurthest_vert_from_camera.main()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "redshift_aovs.py- Check for redshift aovs in scene and delete them." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Redshift Aovs" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -imageOverlayLabel "RA" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya_scripts.scripts.validation.redshift_aovs\nfrom importlib import reload\nreload(maya_scripts.scripts.validation.redshift_aovs)\nmaya_scripts.scripts.validation.redshift_aovs.main()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "mayacharm.py- Description of mayacharm.py." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Mayacharm" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -font "plainLabelFont" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:\\Users\\JohannesAndersson\\OneDrive - Frank Valiant AB\\Desktop\\scripts\\maya_scripts\\scripts\\.icons\\mayacharm.png" 
+        -image1 "C:\\Users\\JohannesAndersson\\OneDrive - Frank Valiant AB\\Desktop\\scripts\\maya_scripts\\scripts\\.icons\\mayacharm.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya_scripts.scripts.scripting.mayacharm\nfrom importlib import reload\nreload(maya_scripts.scripts.scripting.mayacharm)\nmaya_scripts.scripts.scripting.mayacharm.main()" 
+        -sourceType "python" 
         -commandRepeatable 1
         -flat 1
     ;

@@ -14,5 +14,9 @@ def get_referenced_scenes():
     return scenes
 
 
-if __name__ == '__main__':
+def main():
     print(get_referenced_scenes())
+
+
+if __name__ == '__main__':
+    main()

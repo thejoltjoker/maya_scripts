@@ -4,6 +4,7 @@
 scripts_to_menu.py
 Description of scripts_to_menu.py.
 """
+import sys
 
 import maya.cmds as cmds
 import os
@@ -11,7 +12,8 @@ import re
 from pprint import pprint
 import logging
 
-SCRIPTS_PATH = r'C:\Users\JohannesAndersson\OneDrive - Frank Valiant AB\Desktop\scripts\maya_scripts\scripts'
+MENU_PATH = r'C:\Users\JohannesAndersson\OneDrive - Frank Valiant AB\Desktop\scripts\maya_scripts'
+SCRIPTS_PATH = os.path.join(MENU_PATH, 'scripts')
 ICONS_PATH = os.path.join(SCRIPTS_PATH, '.icons')
 
 
@@ -50,6 +52,21 @@ def get_docstring(file):
     found = re.findall(pattern, content)
     if found:
         return found[0].strip().replace('\n', '- ')
+
+
+def create_command(path, function='main'):
+    path = os.path.relpath(path, MENU_PATH)
+    parent = os.path.basename(MENU_PATH)
+    split_path = path.split(os.sep)
+    split_path.insert(0, parent)
+    abs_import = '.'.join(split_path).replace('.py', '')
+    command = 'import {mods}\n'.format(mods=abs_import)
+    if sys.version_info.major >= 3:
+        command = command + 'from importlib import reload\n'
+    command = command + 'reload({mods})\n' \
+                        '{mods}.{function}()'.format(mods=abs_import, function=function)
+
+    return command
 
 
 def create_submenu(parent, structure):
@@ -92,7 +109,9 @@ def create_submenu(parent, structure):
                                           label=parsed_name,
                                           i=icon,
                                           annotation=annotation,
-                                          command='\n'.join(pscript))
+                                          # command=''.join(pscript),
+                                          command=create_command(k)
+                                          )
     return
 
 
@@ -145,8 +164,14 @@ def path_to_dict(path):
     return d
 
 
+def main():
+    p = r'C:\Users\JohannesAndersson\OneDrive - Frank Valiant AB\Desktop\scripts\maya_scripts\scripts\modeling\create_locator_from_vertex.py'
+    print(create_command(p))
+
+
 if __name__ == '__main__':
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.DEBUG)
-    # pprint(path_to_dict(SCRIPTS_PATH))
-    create_menu()
+    # logger = logging.getLogger(__name__)
+    # logger.setLevel(logging.DEBUG)
+    # # pprint(path_to_dict(SCRIPTS_PATH))
+    # create_menu()
+    main()

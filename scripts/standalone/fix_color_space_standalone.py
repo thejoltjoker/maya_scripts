@@ -1,42 +1,99 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-incremental_save.py
-Description of incremental_save.py.
-"""
-import shutil
-import sys
-from pathlib import Path
-
-from maya import cmds, standalone
-
 # !/usr/bin/env python3
 """fix_color_space.py
 Description of fix_color_space.py.
 """
-import logging
-from maya import cmds
 
-logger = logging.getLogger(__name__)
-handler = logging.StreamHandler()
+import logging
+import os
+import shutil
+import subprocess
+import sys
+import maya.OpenMayaUI as omui
+import shiboken2
+from PySide2 import QtGui, QtWidgets
+from PySide2.QtWidgets import QFileDialog
+from pathlib import Path
+from maya import cmds, standalone
+
+logger = logging.getLogger()
 file_handler = logging.FileHandler(r'C:\temp\color_space.log')
 formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s: %(message)s')
-handler.setFormatter(formatter)
 file_handler.setFormatter(formatter)
-logger.addHandler(handler)
 logger.addHandler(file_handler)
 logger.setLevel(logging.DEBUG)
 
 IGNORE = ['initialShadingGroup', 'initialShadingGroup', 'initialParticleSE', 'lambert1']
-
-COLOR_SPACES = {'diffuse_color': 'sRGB',
-                'refl_roughness': 'Raw',
-                'refl_aniso_rotation': 'Raw',
-                'bump_input': 'Raw',
-                'refl_metalness': 'Raw'}
+COLOR_SPACES = {
+    'coat_bump_input': 'Raw',
+    'coat_color': 'sRGB',
+    'coat_direct': 'Raw',
+    'coat_indirect': 'Raw',
+    'coat_ior': 'Raw',
+    'coat_ior3': 'Raw',
+    'coat_reflectivity': 'Raw',
+    'coat_roughness': 'Raw',
+    'coat_transmittance': 'sRGB',
+    'coat_weight': 'Raw',
+    'diffuse_direct': 'Raw',
+    'diffuse_indirect': 'Raw',
+    'diffuse_roughness': 'Raw',
+    'diffuse_weight': 'Raw',
+    'emission_color': 'sRGB',
+    'emission_weight': 'Raw',
+    'ms_color0': 'sRGB',
+    'ms_color1': 'sRGB',
+    'ms_color2': 'sRGB',
+    'ms_radius0': 'Raw',
+    'ms_radius1': 'Raw',
+    'ms_radius2': 'Raw',
+    'ms_radius_scale': 'Raw',
+    'ms_weight0': 'Raw',
+    'ms_weight1': 'Raw',
+    'ms_weight2': 'Raw',
+    'opacity_color': 'Raw',
+    'overall_color': 'sRGB',
+    'refl_aniso': 'Raw',
+    'refl_color': 'sRGB',
+    'refl_cutoff': 'Raw',
+    'refl_direct': 'Raw',
+    'refl_edge_tint': 'Raw',
+    'refl_indirect': 'Raw',
+    'refl_ior': 'Raw',
+    'refl_ior3': 'Raw',
+    'refl_k3': 'Raw',
+    'refl_reflectivity': 'Raw',
+    'refl_weight': 'Raw',
+    'refr_abbe': 'Raw',
+    'refr_absorption_scale': 'Raw',
+    'refr_color': 'sRGB',
+    'refr_cutoff': 'Raw',
+    'refr_ior': 'Raw',
+    'refr_roughness': 'Raw',
+    'refr_transmittance': 'sRGB',
+    'refr_weight': 'Raw',
+    'shadow_opacity': 'Raw',
+    'sheen_color': 'sRGB',
+    'sheen_direct': 'Raw',
+    'sheen_indirect': 'Raw',
+    'sheen_roughness': 'Raw',
+    'sheen_weight': 'Raw',
+    'ss_amount': 'Raw',
+    'ss_extinction_coeff': 'Raw',
+    'ss_extinction_scale': 'Raw',
+    'ss_phase': 'Raw',
+    'ss_scatter_coeff': 'sRGB',
+    'transl_color': 'Raw',
+    'transl_weight': 'Raw',
+    'diffuse_color': 'sRGB',
+    'refl_roughness': 'Raw',
+    'refl_aniso_rotation': 'Raw',
+    'bump_input': 'Raw',
+    'refl_metalness': 'Raw'
+}
 
 SCENES_TODO = []
 SCENES_DONE = []
+CURRENT_SCENE = None
 
 
 def get_inputs(node):
@@ -102,10 +159,16 @@ def process_tree(tree, color_space='Raw'):
     # Check if the key has a node type or it's just a connection
     if node_type:
         if node_type == 'file':
-            logger.info(f'Changing {node} input color space to {color_space}')
+            logger.info(f'[{CURRENT_SCENE}] Changing {node} input color space to {color_space}')
             change_colorspace(node, color_space)
         for k, v in tree[node].get('connections', {}).items():
             process_tree(v)
+
+
+def current_scene():
+    global CURRENT_SCENE
+    CURRENT_SCENE = Path(cmds.file(q=True, sn=True)).stem
+    return CURRENT_SCENE
 
 
 def fix_color_spaces():
@@ -113,13 +176,13 @@ def fix_color_spaces():
     all_materials = cmds.ls(mat=True)
 
     for material in all_materials:
-        logger.info(f'Processing inputs for {material}')
+        logger.info(f'[{current_scene()}] Processing inputs for {material}')
         inputs = get_inputs(material)
 
         for k, v in inputs[material].get('connections', {}).items():
             # Determine color space
             clr_space = COLOR_SPACES.get(k, 'Raw')
-            logger.info(f'Changing all file input color spaces for {k} to {clr_space}')
+            logger.info(f'[{current_scene()}] Changing all file input color spaces for {k} to {clr_space}')
 
             # Process connections
             process_tree(v, clr_space)
@@ -137,52 +200,122 @@ def get_referenced_scenes():
 
 
 def process_scene(maya_file):
+    global CURRENT_SCENE
     # Make backup
     path = Path(maya_file)
-    backup_path = path.parent / f'{path.name}.BAK'
-    logger.info(f'Backing up {path} to {backup_path}')
-    shutil.copy2(path, backup_path)
-    if path not in SCENES_DONE:
-        logger.info(f'Trying to open {path}')
 
-        # Open file
-        cmds.file(str(path.resolve()), open=True)
+    CURRENT_SCENE = path.stem
+    if path.suffix in ['.mb', '.ma']:
+        backup_path = path.parent / f'{path.name}.BAK'
+        logger.info(f'[{CURRENT_SCENE}] Backing up {path} to {backup_path}')
+        shutil.copy2(path, backup_path)
+        if path not in SCENES_DONE:
+            logger.info(f'[{CURRENT_SCENE}] Trying to open {path}')
 
-        # Fix referenced scenes
-        for scene in get_referenced_scenes():
-            scene_path = Path(scene)
-            if scene_path.is_file():
-                SCENES_TODO.append(scene_path)
+            # Open file
+            cmds.file(str(path.resolve()), open=True)
 
-        # Fix color spaces
-        fix_color_spaces()
+            # Fix referenced scenes
+            for scene in get_referenced_scenes():
+                scene_path = Path(scene)
+                if scene_path.is_file():
+                    SCENES_TODO.append(scene_path)
 
-        # Save file
-        cmds.file(save=True)
+            # Fix color spaces
+            fix_color_spaces()
 
-        # Remove scene from todo and add to done
-        logger.info(f'Scenes to process: {SCENES_TODO}')
-        logger.info(f'Scenes processed: {SCENES_DONE}')
-        SCENES_TODO.pop(SCENES_TODO.index(path))
-        SCENES_DONE.append(path)
+            # Save file
+            cmds.file(save=True)
 
-    logger.info('Scene processed')
+            # Remove scene from todo and add to done
+            logger.info(f'[{CURRENT_SCENE}] Scenes to process: {SCENES_TODO}')
+            logger.info(f'[{CURRENT_SCENE}] Scenes processed: {SCENES_DONE}')
+            SCENES_TODO.pop(SCENES_TODO.index(path))
+            SCENES_DONE.append(path)
+
+        logger.info(f'[{CURRENT_SCENE}] Scene processed')
 
 
-def main(maya_file):
+def get_maya_window():
+    """Get maya main window"""
+    ptr = omui.MQtUtil.mainWindow()
+    maya_window = shiboken2.wrapInstance(int(ptr), QtWidgets.QWidget)
+
+    return maya_window
+
+
+def browse_file():
+    filename, filter = QFileDialog.getOpenFileName(parent=get_maya_window(), caption='Open file', dir='.',
+                                                   filter='Maya scene (*.mb *.ma)')
+    if filename:
+        return filename
+
+
+def run():
+    global CURRENT_SCENE
     standalone.initialize()
-    path = Path(maya_file)
-    SCENES_TODO.append(path)
+
     while len(SCENES_TODO) > 0:
-        process_scene(SCENES_TODO[0])
+        try:
+            CURRENT_SCENE = SCENES_TODO[0].stem
+            process_scene(SCENES_TODO[0])
+        except Exception as e:
+            logger.warning(e)
+
     standalone.uninitialize()
     logger.info(f'Processed the following scenes:')
+
     for sc in SCENES_DONE:
         logger.info(sc)
+
+
+def run_standalone(maya_files: list):
+    mayapy = r'C:\Program Files\Autodesk\Maya2022\bin\mayapy.exe'
+    script = os.path.realpath(__file__)
+    cmd = [mayapy, script]
+    cmd.extend([str(x) for x in maya_files])
+
+    process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    for line in process.stdout:
+        sys.stdout.write(line)
+    cmds.warning('Finished!')
+    return process
+
+
+def run_current_scene():
+    """Run cleanups on current scene and referenced scenes
+
+    """
+    for scene in get_referenced_scenes():
+        scene_path = Path(scene)
+        if scene_path.is_file():
+            SCENES_TODO.append(scene_path)
+
+    run_standalone(SCENES_TODO)
+
+    # Fix in current scene
+    # fix_color_spaces()
+
+
+def browse_and_run():
+    path = browse_file()
+    if path:
+        run_standalone([path])
+
+
+def main():
+    # run_current_scene()
+    path = browse_file()
+    if path:
+        run_standalone(path)
 
 
 if __name__ == '__main__':
     # path = Path(sys.argv[0])
     # logger.info(path.resolve())
     # path = r'C:\Users\JohannesAndersson\OneDrive - Frank Valiant AB\Desktop\temp\scene\test_color_fix_v001.mb'
-    main(sys.argv[1])
+    paths = [Path(x) for x in sys.argv]
+    scenes = [x for x in paths if x.suffix in ['.ma', '.mb']]
+    SCENES_TODO.extend(scenes)
+    run()
+    # main()

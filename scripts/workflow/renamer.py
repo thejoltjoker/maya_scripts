@@ -176,7 +176,7 @@ def blank_rename():
     return renamed
 
 
-if __name__ == '__main__':
+def main():
     name_dialog = cmds.promptDialog(
         title='Rename',
         message='Enter new name:',
@@ -193,3 +193,7 @@ if __name__ == '__main__':
             cmds.warning("The name can't be blank")
     else:
         print('User cancelled renaming')
+
+
+if __name__ == '__main__':
+    main()
