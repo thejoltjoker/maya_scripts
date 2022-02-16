@@ -5,14 +5,13 @@ scripts_to_menu.py
 Description of scripts_to_menu.py.
 """
 import sys
-
 import maya.cmds as cmds
 import os
 import re
-from pprint import pprint
 import logging
 
-MENU_PATH = r'C:\Users\JohannesAndersson\OneDrive - Frank Valiant AB\Desktop\scripts\maya_scripts'
+# MENU_PATH = r'/Users/johannes/dropbox/dev/repos/maya_scripts'
+MENU_PATH = os.path.dirname(os.path.realpath(__file__))
 SCRIPTS_PATH = os.path.join(MENU_PATH, 'scripts')
 ICONS_PATH = os.path.join(SCRIPTS_PATH, '.icons')
 
