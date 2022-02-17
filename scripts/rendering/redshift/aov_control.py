@@ -66,7 +66,7 @@ def set_redshift_renderer():
 
 def create_redshift_aovs(aov_names, color_processing=True):
     """Create redshift aov nodes"""
-    existing_aovs = {aov_nice_name(x): x for x in cmds.ls(type='RedshiftAOV')}
+    existing_aovs = {aov_nice_name(x): x for x in cmds.ls(type='RedshiftAOV', l=True)}
     aov_nodes = []
     for aov in aov_names:
         if existing_aovs.get(aov):
@@ -156,7 +156,7 @@ def create_aov_switch():
         cmds.addAttr(pass_holder_grp, ln='enableUtility', nn='Enable Utility AOVs', at='bool', dv=1, k=True)
 
         # Connect attributes
-        existing_aovs = cmds.ls(type='RedshiftAOV')
+        existing_aovs = cmds.ls(type='RedshiftAOV', l=True)
         for aov_node in existing_aovs:
             aov_nice = aov_nice_name(aov_node)
             if aov_nice in AOVS_BEAUTY:
@@ -259,7 +259,7 @@ def world_position(node):
 
 def all_geo_transforms():
     transforms = []
-    nodes = cmds.ls(geometry=True)
+    nodes = cmds.ls(geometry=True, l=True)
 
     for node in nodes:
         parent = cmds.listRelatives(node, p=True)
@@ -303,7 +303,7 @@ def furthest_vertex_from_transform(target, vertices):
 def renderable_cameras():
     """Check for renderable cameras"""
     renderable_cameras = []
-    cameras = cmds.ls(ca=True)
+    cameras = cmds.ls(ca=True, l=True)
     for cam in cameras:
         if cmds.getAttr("{}.renderable".format(cam)):
             cam_parent = cmds.listRelatives(cam, parent=True)
