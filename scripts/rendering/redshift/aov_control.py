@@ -262,7 +262,7 @@ def all_geo_transforms():
     nodes = cmds.ls(geometry=True, l=True)
 
     for node in nodes:
-        parent = cmds.listRelatives(node, p=True)
+        parent = cmds.listRelatives(node, p=True, pa=True)
         for p in parent:
             transforms.append(p)
     return transforms
@@ -340,6 +340,7 @@ def zdepth_distance():
 
 def main():
     print(zdepth_distance())
+    create_aov_switch()
     # if not renderer_is_redshift():
     #     confirmation = cmds.confirmDialog(title='Set render engine',
     #                                       message='Do you want to set Redshift as render engine?', button=['Yes', 'No'],
