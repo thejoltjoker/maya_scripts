@@ -4,32 +4,47 @@ Description of create_softbox_texture.py.
 from maya import cmds
 
 
+def create_softbox_texture():
+    # Create ramp node and change settings
+    node_ramp = cmds.shadingNode('ramp', asTexture=True)
+    cmds.setAttr(node_ramp + '.type', 6)  # UV box
+    cmds.setAttr(node_ramp + '.interpolation', 2)  # Exponential up
+    # Set colors
+    cmds.setAttr(node_ramp + '.colorEntryList[0].position', 0)
+    cmds.setAttr(node_ramp + '.colorEntryList[1].position', 1)
+    cmds.setAttr(node_ramp + '.colorEntryList[0].color', 1, 1, 1, type='double3')
+    cmds.setAttr(node_ramp + '.colorEntryList[1].color', 0, 0, 0, type='double3')
+
+    # Create placement node
+    node_2d_texture = cmds.shadingNode('place2dTexture', asUtility=True)
+
+    # Add some noise for realism
+    cmds.setAttr(node_2d_texture + '.noiseU', 0.003)
+    cmds.setAttr(node_2d_texture + '.noiseV', 0.003)
+
+    # Connect ramp to placement node
+    cmds.connectAttr(node_2d_texture + '.outUV', node_ramp + '.uv')
+    cmds.connectAttr(node_2d_texture + '.outUvFilterSize', node_ramp + '.uvFilterSize')
+
+    return node_ramp
+
+
 def main():
     """docstring for main"""
-    # // Info:  [Redshift] Stopping IPR //
-    # shadingNode -asTexture ramp;
-    cmds.shadingNode('ramp', asTexture=True)
-    # // Result: ramp2 //
-    # shadingNode -asUtility place2dTexture;
+    # redshiftCreateLight "RedshiftPhysicalLight";
 
-    cmds.shadingNode('place2dTexture', asUtility=True)
+    for node in cmds.ls(sl=True):
+        if cmds.nodeType(node) == 'RedshiftPhysicalLight':
+            shapes = [node]
+        else:
+            shapes = cmds.listRelatives(node)
 
-    # // Result: place2dTexture4 //
-    # connectAttr place2dTexture4.outUV ramp2.uv;
-    # // Result: Connected place2dTexture4.outUV to ramp2.uvCoord. //
-    # connectAttr place2dTexture4.outUvFilterSize ramp2.uvFilterSize;
-    # // Result: Connected place2dTexture4.outUvFilterSize to ramp2.uvFilterSize. //
-    # defaultNavigation -force true -connectToExisting -source ramp2 -destination |lights_A_grp|rimLightOffset_grp1|rimLight_lgt|rimLight_lgtShape.color; window -e -vis false createRenderNodeWindow;
-    # // Error: file: //10.21.110.11/pipeline/Redshift/Plugins/Maya/Common/scripts/override/2022/connectNodeToAttrOverride.mel line 85: More than one object matches name: rimLight_lgtShape //
-    # connectAttr -force ramp2.outColor rimLightOffset_grp1|rimLight_lgt|rimLight_lgtShape.color;
-    # // Result: Connected ramp2.outColor to rimLight_lgtShape.color. //
-    # // Result: createRenderNodeWindow //
-    # setAttr "ramp2.type" 5;
-    # setAttr "ramp2.interpolation" 2;
-    # setAttr "ramp2.colorEntryList[0].position" 0.855491;
-    # setAttr "ramp2.colorEntryList[1].position" 0;
-    # setAttr "ramp2.colorEntryList[0].position" 1;
+        for shape in shapes:
+            if cmds.nodeType(shape) == 'RedshiftPhysicalLight':
+                softbox_texture = create_softbox_texture()
+                cmds.connectAttr(softbox_texture + '.outColor', shape + '.color', force=True)
     pass
+
 
 if __name__ == '__main__':
     main()
