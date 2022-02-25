@@ -26,6 +26,9 @@ def main():
         # Set images in workspace
         cmds.workspace(fileRule=['images', render_path])
 
+        # Save workspace to disk
+        cmds.workspace(saveWorkspace=True)
+
     # Print workspace
     rules = cmds.workspace(fileRule=True, q=True)
     img_index = rules.index("images") + 1

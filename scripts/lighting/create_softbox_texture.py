@@ -33,11 +33,11 @@ def main():
     """docstring for main"""
     # redshiftCreateLight "RedshiftPhysicalLight";
 
-    for node in cmds.ls(sl=True):
+    for node in cmds.ls(sl=True, l=True):
         if cmds.nodeType(node) == 'RedshiftPhysicalLight':
             shapes = [node]
         else:
-            shapes = cmds.listRelatives(node)
+            shapes = cmds.listRelatives(node, f=True)
 
         for shape in shapes:
             if cmds.nodeType(shape) == 'RedshiftPhysicalLight':
