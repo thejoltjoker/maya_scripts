@@ -11,12 +11,13 @@ def fix_filename_prefix():
     nodes = cmds.ls(type='RedshiftAOV')
     for aov in nodes:
         if not 'crypto' in aov.lower():
-            cmds.setAttr(aov + ".filePrefix", "<BeautyPath>/<BeautyFile>", type='string')
-            print(aov + " has been added to multichannel exr.")
+            if not 'depth' in aov.lower():
+                cmds.setAttr(aov + ".filePrefix", "<BeautyPath>/<BeautyFile>", type='string')
+                print(aov + " has been added to multichannel exr.")
 
     cmds.warning("AOVs have been added to multichannel exr.")
 
-
+# <BeautyPath>/<BeautyFile>.<RenderPass>
 def main():
     fix_filename_prefix()
 

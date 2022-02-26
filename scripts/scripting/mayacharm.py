@@ -8,9 +8,10 @@ from maya import cmds
 
 def main():
     """docstring for main"""
-
-    if not cmds.commandPort(":4435", query=True):
-        cmds.commandPort(name=":4435")
+    port = 4435
+    if not cmds.commandPort(":{}".format(port), query=True):
+        cmds.commandPort(name=":{}".format(port))
+        cmds.warning('Command port open on {}'.format(port))
 
 
 if __name__ == '__main__':
