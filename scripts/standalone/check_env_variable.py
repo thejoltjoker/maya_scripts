@@ -2,6 +2,7 @@
 """check_env_variable.py
 Description of check_env_variable.py.
 """
+import platform
 import sys
 import os
 from pprint import pprint
@@ -18,11 +19,10 @@ def main():
     """docstring for main"""
     text_file = os.path.abspath(os.path.join(os.path.dirname(__file__), 'hosts.txt'))
     standalone.initialize(name='python')
-    host_info = os.uname()
-    pprint(host_info)
-    for i in host_info:
-        write_to_file(text_file, i)
+
+    write_to_file(text_file, platform.node())
     write_to_file(text_file, 'ACTIVE_LIBRARY_PATH: ' + os.getenv('ACTIVE_LIBRARY_PATH'))
+    write_to_file(text_file, '\n')
 
 
 if __name__ == '__main__':

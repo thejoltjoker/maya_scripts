@@ -31,7 +31,7 @@ AOVS_BEAUTY_RAW.extend(AOVS_BEAUTY_AND_RAW)
 AOVS_UTIL = ['Bump Normals',
              'Cryptomatte',
              'Depth',
-             # 'Motion Vectors',
+             'Motion Vectors',
              'Normals',
              'World Position',
              'Ambient Occlusion']
@@ -79,6 +79,8 @@ def create_redshift_aovs(aov_names, color_processing=True):
                 aov_nodes.append(unfiltered_depth_node)
             elif aov == 'Ambient Occlusion':
                 aov_node = create_ao_aov()
+            elif aov == 'Motion Vectors':
+                aov_node = create_motion_vectors_aov(max_motion=250)
             else:
                 aov_node = cmds.rsCreateAov(type=aov)
                 mel.eval('redshiftUpdateActiveAovList()')
@@ -237,6 +239,15 @@ def create_depth_aov(filtered=False):
     cmds.setAttr(aov_node + '.maxDepth', max_depth)
     if filter == 3:
         cmds.setAttr(aov_node + '.name', 'ZFiltered', type='string')
+    return aov_node
+
+
+def create_motion_vectors_aov(max_motion=250):
+    """Create a custom aov with an ambient occlusion shader.
+    """
+    # Create custom aov
+    aov_node = cmds.rsCreateAov(type='Motion Vectors')
+    cmds.setAttr(aov_node + '.maxMotionInPixels', max_motion)
     return aov_node
 
 
