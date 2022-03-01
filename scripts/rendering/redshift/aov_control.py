@@ -76,7 +76,7 @@ def create_redshift_aovs(aov_names, color_processing=True):
                 unfiltered_depth_node = create_depth_aov(filtered=False)
                 filtered_depth_node = create_depth_aov(filtered=True)
                 aov_nodes.append(unfiltered_depth_node)
-                aov_nodes.append(unfiltered_depth_node)
+                aov_nodes.append(filtered_depth_node)
             elif aov == 'Ambient Occlusion':
                 aov_node = create_ao_aov()
             elif aov == 'Motion Vectors':
@@ -229,7 +229,7 @@ def create_depth_aov(filtered=False):
     """Create a custom aov with an ambient occlusion shader.
     """
     # 1 is filter All and 3 is centered sample
-    filter = 1 if filtered else 3
+    filter = 0 if filtered else 3
     max_depth = zdepth_distance()
     # Create custom aov
     aov_node = cmds.rsCreateAov(type='Depth')
@@ -237,7 +237,7 @@ def create_depth_aov(filtered=False):
     cmds.setAttr(aov_node + '.filterMode', filter)
     cmds.setAttr(aov_node + '.useCameraNearFar', 0)
     cmds.setAttr(aov_node + '.maxDepth', max_depth)
-    if filter == 3:
+    if filtered:
         cmds.setAttr(aov_node + '.name', 'ZFiltered', type='string')
     return aov_node
 
