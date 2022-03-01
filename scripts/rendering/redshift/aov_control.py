@@ -34,7 +34,8 @@ AOVS_UTIL = ['Bump Normals',
              'Motion Vectors',
              'Normals',
              'World Position',
-             'Ambient Occlusion']
+             'Ambient Occlusion',
+             'UV']
 
 
 def renderer_is_redshift():
@@ -79,6 +80,8 @@ def create_redshift_aovs(aov_names, color_processing=True):
                 aov_nodes.append(filtered_depth_node)
             elif aov == 'Ambient Occlusion':
                 aov_node = create_ao_aov()
+            elif aov == 'UV':
+                aov_node = create_uv_aov()
             elif aov == 'Motion Vectors':
                 aov_node = create_motion_vectors_aov(max_motion=250)
             else:
@@ -204,6 +207,29 @@ def create_aov_switch():
 
         cmds.select(pass_holder_grp)
         return pass_holder_grp
+
+
+def create_uv_aov():
+    """Create a custom aov with an ambient occlusion shader.
+    """
+    # Create custom aov
+    aov_node = cmds.rsCreateAov(type='Custom', name='rsAov_UV')
+    cmds.setAttr(aov_node + '.name', 'UV', type='string')
+
+    # Update aov list
+    mel.eval('redshiftUpdateActiveAovList()')
+
+    # Create nodes
+    state_node = cmds.shadingNode('RedshiftState', name='uvState_shd', asUtility=True)
+    multdiv_node = cmds.shadingNode('multiplyDivide', name='uvMultiplyDivide', asUtility=True)
+
+    # Connect nodes
+    cmds.setAttr(multdiv_node + '.operation', 0)
+    cmds.connectAttr(state_node + '.outUVCoord0', multdiv_node + '.input1X')
+    cmds.connectAttr(state_node + '.outUVCoord1', multdiv_node + '.input1Y')
+    cmds.connectAttr(multdiv_node + '.output', aov_node + '.defaultShader')
+
+    return aov_node
 
 
 def create_ao_aov():
