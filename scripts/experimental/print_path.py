@@ -16,30 +16,30 @@ def get_environment():
     sys_paths = sys.path
 
     allScriptPaths = script_paths.split(";")
-    print( "\nMAYA_SCRIPT_PATHs are:")
+    print("\nMAYA_SCRIPT_PATHs are:")
     for scriptPath in allScriptPaths:
-        print( scriptPath)
+        print(scriptPath)
 
     allPlugInPaths = plugin_paths.split(";")
-    print( "\nMAYA_PLUG_IN_PATHs are:")
+    print("\nMAYA_PLUG_IN_PATHs are:")
     for plugInPath in allPlugInPaths:
-        print( plugInPath)
+        print(plugInPath)
 
     allPythonPaths = python_paths.split(";")
-    print( "\nPYTHONPATHs are:")
+    print("\nPYTHONPATHs are:")
     for pythonPath in allPythonPaths:
-        print( pythonPath)
+        print(pythonPath)
 
     allIconPaths = icon_paths.split(";")
-    print( "\nXBMLANGPATHs are:")
+    print("\nXBMLANGPATHs are:")
     for iconPath in allIconPaths:
-        print iconPath
+        print(iconPath)
 
     allPathPaths = path_paths.split(";")
-    print( "\nPATHs are:")
+    print("\nPATHs are:")
     for pathPath in allPathPaths:
-        print pathPath
+        print(pathPath)
 
-    print( "\nsys.paths are:")
+    print("\nsys.paths are:")
     for sysPath in sys_paths:
-        print sysPath
+        print(sysPath)
