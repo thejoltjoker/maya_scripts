@@ -5,7 +5,7 @@ Description of create_playblast.py.
 import os
 import sys
 from datetime import datetime
-
+from pprint import pprint
 from maya import cmds
 
 
@@ -23,7 +23,6 @@ def playblast(*args, **kwargs):
     print(out_file)
     params = {'filename': out_file,
               'clearCache': True,
-              'fmt': 'qt',
               'orn': False,
               'v': False,
               'percent': 100,
@@ -32,10 +31,14 @@ def playblast(*args, **kwargs):
               'height': 1080,
               'fo': True
               }
+    pprint(params)
     if sys.platform == 'win32':
+        params['format'] = 'qt'
         params['compression'] = 'Animation'
-    else:
-        params['compression'] = 'h264'
+    elif sys.platform == 'darwin':
+        params['format'] = 'avfoundation'
+        params['compression'] = 'H.264'
+
     cmds.playblast(**params)
     cmds.warning("{0} created in {1}".format(filename, new_dailies_folder))
 
