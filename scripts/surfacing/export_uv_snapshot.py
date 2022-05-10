@@ -22,13 +22,8 @@ def main():
     sel = cmds.ls(sl=True)[0]
     scene_path = cmds.file(sn=True, q=True)
     scene_name = os.path.basename(scene_path)
-    export_path = os.path.join(
-        os.path.dirname(scene_path),
-        '..',
-        '..',
-        'exports')
-    out_filename = '_'.join(
-        [os.path.splitext(scene_name)[0], convert_filename(sel), 'uv.png'])
+    export_path = os.path.join(os.path.dirname(scene_path), '..', '..', 'exports')
+    out_filename = '_'.join([os.path.splitext(scene_name)[0], convert_filename(sel), 'uv.png'])
     out_file = os.path.abspath(os.path.join(export_path, out_filename))
 
     if not os.path.exists(export_path):

@@ -8,7 +8,9 @@ import maya.mel as mel
 
 
 def set_default_settings():
+    filename_prefix = '<Scene>/<RenderLayer>/<camera>_<RenderLayer>'
     # mel.eval('unifiedRenderGlobalsWindow')
+
     # List the plugins that are currently loaded
     plugins = cmds.pluginInfo(query=True, listPlugins=True)
     # Load Redshift
@@ -26,15 +28,16 @@ def set_default_settings():
     # cmds.setAttr('redshiftOptions.noSaveImage', 1)
     cmds.setAttr('redshiftOptions.exrMultipart', 0)
     cmds.setAttr('redshiftOptions.exrForceMultilayer', 0)
-    cmds.setAttr('defaultRenderGlobals.ifp',
-                 '<Scene>/<Scene>_<RenderLayer>', type='string')
+    cmds.setAttr('defaultRenderGlobals.ifp', filename_prefix, type='string')
 
     # Animation settings
-    maxFrame = cmds.playbackOptions(q=True, max=True)
-    minFrame = cmds.playbackOptions(q=True, min=True)
+    end_frame = cmds.playbackOptions(q=True, max=True)
+    start_frame = cmds.playbackOptions(q=True, min=True)
     cmds.setAttr('defaultRenderGlobals.animation', 1)
     cmds.setAttr('defaultRenderGlobals.byFrameStep', 1)
     cmds.setAttr('defaultRenderGlobals.extensionPadding', 4)
+    cmds.setAttr('defaultRenderGlobals.startFrame', start_frame)
+    cmds.setAttr('defaultRenderGlobals.endFrame', end_frame)
 
     # Output settings
     cmds.setAttr('defaultResolution.width', 1920)
@@ -42,16 +45,21 @@ def set_default_settings():
     cmds.setAttr('defaultResolution.deviceAspectRatio', 1.777)
     cmds.setAttr('defaultResolution.pixelAspect', 1)
 
+    # Lights
+    cmds.setAttr('defaultRenderGlobals.enableDefaultLight', 0)
+    cmds.setAttr('redshiftOptions.GIEnabled', 1)
+
     # Sampler settings
     cmds.setAttr('redshiftOptions.autoProgressiveRenderingIprEnabled', 1)
     cmds.setAttr('redshiftOptions.unifiedRandomizePattern', 1)
+    cmds.setAttr('redshiftOptions.enableAutomaticSampling', 0)
 
     # Motion blur settings
-    cmds.setAttr('redshiftOptions.motionBlurEnable', 0)
+    cmds.setAttr('redshiftOptions.motionBlurEnable', 1)
     cmds.setAttr('redshiftOptions.motionBlurFrameDuration', 0.5)
     cmds.setAttr('redshiftOptions.motionBlurShutterStart', 0.25)
     cmds.setAttr('redshiftOptions.motionBlurShutterEnd', 0.75)
-    cmds.setAttr('redshiftOptions.motionBlurShutterEfficiency', 0.5)
+    cmds.setAttr('redshiftOptions.motionBlurShutterEfficiency', 1)
     cmds.setAttr('redshiftOptions.motionBlurDeformationEnable', 1)
 
 

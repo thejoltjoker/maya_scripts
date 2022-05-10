@@ -43,5 +43,5 @@ if __name__ == '__main__':
             cmds.warning(dialog_title + ": The input can't be blank")
     else:
         # If dialog is cancelled
-        print 'User cancelled ' + dialog_title
+        print('User cancelled ' + dialog_title)
 

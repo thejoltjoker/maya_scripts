@@ -8,6 +8,34 @@ import maya.cmds as cmds
 import os
 
 
+def path_dialog(placeholder=None):
+    text = placeholder if placeholder else os.path.dirname(cmds.file(q=True, exn=True))
+    dialog_title = 'Images Path'
+    dialog_message = 'Images path:'
+    default_button = 'OK'
+    cancel_button = 'Cancel'
+    dialog = cmds.promptDialog(
+        title=dialog_title,
+        message=dialog_message,
+        text=text,
+        button=[default_button, cancel_button],
+        defaultButton=default_button,
+        cancelButton=cancel_button,
+        dismissString=cancel_button)
+
+    if dialog == default_button:
+        output = cmds.promptDialog(query=True, text=True)
+        if output:
+            # Do stuff here
+            set_images_path(text)
+        else:
+            # If input is blank
+            cmds.warning(dialog_title + ": The input can't be blank")
+    else:
+        # If dialog is cancelled
+        print('User cancelled ' + dialog_title)
+
+
 def main():
     """docstring for main"""
     file_path = cmds.file(q=True, exn=True)
@@ -16,6 +44,15 @@ def main():
     # Construct output path
     render_path = os.path.abspath(os.path.join(file_directory, '..', '..', '..', 'published', 'render'))
 
+    path_dialog(render_path)
+
+    # Print workspace
+    rules = cmds.workspace(fileRule=True, q=True)
+    img_index = rules.index("images") + 1
+    cmds.warning('Images path is {0}'.format(rules[img_index]))
+
+
+def set_images_path(render_path):
     # Check if parent folder exists
     if os.path.isdir(os.path.dirname(render_path)):
 
@@ -28,11 +65,6 @@ def main():
 
         # Save workspace to disk
         cmds.workspace(saveWorkspace=True)
-
-    # Print workspace
-    rules = cmds.workspace(fileRule=True, q=True)
-    img_index = rules.index("images") + 1
-    cmds.warning('Images path is {0}'.format(rules[img_index]))
 
 
 if __name__ == '__main__':

@@ -52,12 +52,15 @@ def incremental_save():
         os.path.join(cur_scene_folder, new_scene_name)))
 
 
+def main():
+    incremental_save()
+
+
 if __name__ == '__main__':
     maya.standalone.initialize()
     cmds.file(r'C:\Users\thejoltjoker\Desktop\scene_v002.ma', open=True)
     incremental_save()
     maya.standalone.uninitialize()
-
 
 # #!/usr/bin/env python
 # # -*- coding: utf-8 -*-
