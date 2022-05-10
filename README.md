@@ -25,8 +25,11 @@ Random scripts and snippets that are either unfinished or just not suitable else
 
 My custom shelf. It's a bit messy.
 
-## Todo 📓
-
-- Clean up a bit...
-
-- Add docstrings to explain some stuff
+## Setup
+- Add parent folder of this repo to `PYTHONPATH`
+- Add this code your userSetup.py
+    ```Python
+    from maya_scripts import scripts_to_menu
+    scripts_to_menu.create_menu()
+    ```
+  

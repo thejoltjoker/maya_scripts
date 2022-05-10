@@ -5,16 +5,15 @@ Description of set_default_redshift_settings.py.
 """
 import maya.cmds as cmds
 import maya.mel as mel
+
+
 def set_default_settings():
     # mel.eval('unifiedRenderGlobalsWindow')
     # List the plugins that are currently loaded
     plugins = cmds.pluginInfo(query=True, listPlugins=True)
     # Load Redshift
-    if 'redshift4maya' in plugins:
-        om.MGlobal.displayInfo("Redshift is already loaded.")
-    else:
+    if not 'redshift4maya' in plugins:
         cmds.loadPlugin('redshift4maya')
-        om.MGlobal.displayInfo("Redshift is now loaded.")
 
     if cmds.getAttr('defaultRenderGlobals.currentRenderer') != 'redshift':
         cmds.setAttr('defaultRenderGlobals.currentRenderer', 'redshift', type='string')
@@ -56,5 +55,9 @@ def set_default_settings():
     cmds.setAttr('redshiftOptions.motionBlurDeformationEnable', 1)
 
 
+def main():
+    set_default_settings()
+
+
 if __name__ == '__main__':
-    setDefaultRedshiftSettings()
+    main()
