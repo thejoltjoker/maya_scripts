@@ -1,0 +1,25 @@
+With Python scripts you can't simply source them the way you do with MEL. When you create a Python file you are actually creating a new module that can be imported (assuming the file is in a directory on the PYTHONPATH).
+
+To see what is on your Python path you can use the following snippet:
+
+getenv MAYA_SCRIPT_PATH 
+
+import sys
+for s in sys.path:
+    print(s)
+sys.path.append( 'C:\Users\jandersson\Desktop\maya\scripts' )
+
+Fortunately, Maya scripts directories are added by default so you can place your files directly in maya/scripts or maya/<maya_version>/scripts. This is the same location used for MEL scripts.
+Now if I create a new file in one of these folders, let's call it "my_scripts.py" I have a module that can be imported.
+Next, inside this file I add a simple test function:
+
+def print_hello_world():
+  print("Hello World!")
+
+And save.
+Finally, inside of Maya I can call the function by importing as you do with any other module:
+import my_scripts
+my_scripts.print_hello_world()
+
+Of note, when you make changes to your module you will need to reload it using the reload() built-in function. It can be a little quirky so do a quick google search for it and it's use in Maya Python.
+
