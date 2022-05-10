@@ -23,9 +23,15 @@ def all_locators():
 
     return locators
 
+
 def bake_animation():
     """bakeResults -simulation true -t "0:120" -sampleBy 1 -oversamplingRate 1 -disableImplicitControl true -preserveOutsideKeys true -sparseAnimCurveBake false -removeBakedAttributeFromLayer false -removeBakedAnimFromLayer false -bakeOnOverrideLayer false -minimizeRotation true -controlPoints false -shape true {"camera1"};"""
-    cmds.bakeResults(simulation=True,sampleBy=1,oversamplingRate=1,disableImplicitControl=True,preserveOutsideKeys=True,sparseAnimCurveBake=False,removeBakedAttributeFromLayer=False,removeBakedAnimFromLayer=False,bakeOnOverrideLayer=False,minimizeRotation=True,controlPoints=False,shape=True)
+    cmds.bakeResults(simulation=True, sampleBy=1, oversamplingRate=1, disableImplicitControl=True,
+                     preserveOutsideKeys=True, sparseAnimCurveBake=False, removeBakedAttributeFromLayer=False,
+                     removeBakedAnimFromLayer=False, bakeOnOverrideLayer=False, minimizeRotation=True,
+                     controlPoints=False, shape=True)
+
+
 def renderable_cameras():
     """Get renderable cameras"""
     cameras = []

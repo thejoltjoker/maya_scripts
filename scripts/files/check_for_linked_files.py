@@ -15,7 +15,7 @@ def main():
         for attr in attributes:
             if cmds.attributeQuery(attr, node=node, exists=True):
                 attr_val = cmds.getAttr('{}.{}'.format(node, attr))
-                print(attr_val)
+                print(attr_val + '\t|\t%s' % node)
 
 
 if __name__ == '__main__':

@@ -15,6 +15,10 @@ MENU_PATH = os.path.dirname(os.path.realpath(__file__))
 SCRIPTS_PATH = os.path.join(MENU_PATH, 'scripts')
 ICONS_PATH = os.path.join(SCRIPTS_PATH, '.icons')
 
+# Add repo to PATH
+sys.path.append(os.path.abspath(os.path.join(MENU_PATH, '..')))
+logging.info(os.path.abspath(os.path.join(MENU_PATH, '..')))
+
 
 #
 # from importlib import reload  # Python 3.4+
