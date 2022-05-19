@@ -118,6 +118,16 @@ def create_submenu(parent, structure):
     return
 
 
+def delete_menu(menu_id):
+    """Delete a menu
+
+    Args:
+        menu_id (str): 
+    """
+    if cmds.menu(menu_id, exists=True):
+        cmds.deleteUI(menu_id)
+
+
 def create_menu():
     structure = path_to_dict(SCRIPTS_PATH)
     # pprint(structure)
@@ -126,8 +136,7 @@ def create_menu():
     # maya_menu_path = os.path.dirname(os.path.realpath(__file__))
 
     # Delete menu if it already exists
-    if cmds.menu(menu_id, exists=True):
-        cmds.deleteUI(menu_id)
+    delete_menu(menu_id)
 
     # Create menu
     menu_obj = cmds.menu(menu_id,

@@ -26,10 +26,6 @@ Random scripts and snippets that are either unfinished or just not suitable else
 My custom shelf. It's a bit messy.
 
 ## Setup
-- Add parent folder of this repo to `PYTHONPATH`
-- Add this code your userSetup.py
-    ```Python
-    from maya_scripts import scripts_to_menu
-    scripts_to_menu.create_menu()
-    ```
-  
+- Add path to parent folder of repository to `PYTHONPATH`
+- Add path to `plugin` folder to `MAYA_PLUG_IN_PATH`
+- Enable plugin in maya
