@@ -119,7 +119,7 @@ def set_render_settings_override(layer, attribute, value):
 #         cmds.setAttr(cam + '.primaryEngine', 0)
 
 
-def get_or_create_collection(parent, name):
+def get_or_create_collection(parent, name, suffix='col'):
     """Get an existing or create a new collection
 
     Args:
@@ -129,6 +129,8 @@ def get_or_create_collection(parent, name):
     Returns:
         maya.app.renderSetup.model.collection.Collection: the collection
     """
+    name = f'{name}_{suffix}' if suffix else name
+    print(name)
     collection = None
     children = parent.getChildren(renderCollection.Collection)
     for child in children:
@@ -226,6 +228,22 @@ def set_collection_filters(collection, pattern='*', filter_type=0, custom_filter
 
     selector.setPattern(pattern)
 
+    return collection
+
+
+def add_static_selection(collection, nodes: list):
+    """Add specific nodes to collection
+
+    Args:
+        collection:
+        nodes:
+
+    Returns:
+
+    """
+    selector = collection.getSelector()
+    static_selector = selector.staticSelection
+    static_selector.add(nodes)
     return collection
 
 
