@@ -130,9 +130,14 @@ def get_or_create_collection(parent, name, suffix='col'):
         maya.app.renderSetup.model.collection.Collection: the collection
     """
     name = f'{name}_{suffix}' if suffix else name
-    print(name)
     collection = None
-    children = parent.getChildren(renderCollection.Collection)
+    # if isinstance(parent, renderLayer.RenderLayer):
+    #     children = parent.getChildren()
+    try:
+        children = parent.getChildren(renderCollection.Collection)
+    except:
+        children = parent.getCollections()
+
     for child in children:
         if child.name() == name:
             collection = child
@@ -206,7 +211,7 @@ def get_or_create_group(parent, name):
     return group
 
 
-def set_collection_filters(collection, pattern='*', filter_type=0, custom_filter_type=''):
+def set_collection_filters(collection, pattern='', filter_type=0, custom_filter_type=''):
     """Set filter parameters for a collection
 
     Args:
