@@ -16,7 +16,7 @@ def main():
     cur_file_folder = os.path.dirname(cur_file)
     cmd = None
     if sys.platform == 'darwin':
-        cmd = 'open {}'.format(cur_file_folder)
+        cmd = ['open', cur_file_folder]
     elif sys.platform == 'win32':
         cmd = 'start "{}"'.format(cur_file_folder)
     if cmd:

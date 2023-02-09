@@ -5,3 +5,4 @@
 *.pyc
 
 .idea
+scripts/standalone/hosts.txt
