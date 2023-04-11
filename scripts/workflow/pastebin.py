@@ -122,26 +122,57 @@ def open_folder(*args, **kwargs):
     if system_os == "win32":
         subprocess.Popen(r'explorer "' + CACHE_FOLDER_PATH + '"')
     elif system_os == "darwin":
-        cache_path_slash = CACHE_FOLDER_PATH.replace('\\', '/')
-        mac_cache_path = CACHE_FOLDER_PATH.replace('//SEQ-LIVE', '/volumes')
-        subprocess.call(["open", "-R", mac_cache_path])
+        subprocess.call(["open", "-R", CACHE_FOLDER_PATH])
 
 
-def window():
-    window_name = "Pastebin"
-    if cmds.window(window_name, exists=True):
-        cmds.deleteUI(window_name)
-    cmds.window(window_name, title="Pastebin")
-    cmds.columnLayout(adjustableColumn=True)
-    cmds.text(CACHE_FOLDER_PATH)
-    cmds.button(label="Copy", command=copy)
-    cmds.button(label="Paste", command=paste)
-    cmds.button(label="Open cache folder", command=open_folder)
-    cmds.showWindow()
+import maya.cmds as cmds
+from PySide2 import QtCore, QtGui, QtWidgets
+
+
+class PastebinWindow(QtWidgets.QDialog):
+    def __init__(self, parent=None):
+        super(PastebinWindow, self).__init__(parent)
+
+        # Set window properties
+        self.setWindowTitle('Pastebin')
+        # self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint | QtCore.Qt.WindowTitleHint)
+        self.setMinimumSize(250, 100)
+
+        # Create button widgets
+        self.label_path = QtWidgets.QLabel(CACHE_FOLDER_PATH)
+        self.label_path.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
+        self.label_path.setStyleSheet('color: #48cae4; text-decoration: underline')
+        # self.label_path.setOpenExternalLinks(False)
+        # self.label_path.linkActivated.connect(open_folder)
+        self.label_path.mousePressEvent = open_folder
+
+        self.btn_copy = QtWidgets.QPushButton('Copy')
+        self.btn_paste = QtWidgets.QPushButton('Paste')
+        self.btn_open = QtWidgets.QPushButton('Open cache folder')
+
+        # Create button layout
+        button_layout = QtWidgets.QHBoxLayout()
+        button_layout.addWidget(self.btn_copy)
+        button_layout.addWidget(self.btn_paste)
+
+        # Main layout
+        main_layout = QtWidgets.QVBoxLayout()
+        main_layout.addLayout(button_layout)
+        main_layout.addWidget(self.btn_open)
+        main_layout.addWidget(QtWidgets.QLabel('Cache folder:'))
+        main_layout.addWidget(self.label_path)
+        self.setLayout(main_layout)
+
+        # Connect button signals to slots
+        self.btn_copy.clicked.connect(copy)
+        self.btn_paste.clicked.connect(paste)
+        self.btn_open.clicked.connect(open_folder)
 
 
 def main():
-    window()
+    # Create and show the popup dialog
+    popup = PastebinWindow()
+    popup.exec_()
 
 
 if __name__ == '__main__':
