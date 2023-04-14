@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""bouncing_box_curve.py
+"""bounding_box_curve.py
 Create a bounding box curve around the selected object
 Source: https://www.reddit.com/r/Maya/comments/k3v3dk/bounding_box_to_nurbs_control/
 """
