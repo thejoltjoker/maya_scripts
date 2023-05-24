@@ -9,7 +9,7 @@ import os
 
 
 def path_dialog(placeholder=None):
-    text = placeholder if placeholder else os.path.dirname(cmds.file(q=True, exn=True))
+    ph = placeholder if placeholder else os.path.dirname(cmds.file(q=True, exn=True))
     dialog_title = 'Images Path'
     dialog_message = 'Images path:'
     default_button = 'OK'
@@ -17,7 +17,7 @@ def path_dialog(placeholder=None):
     dialog = cmds.promptDialog(
         title=dialog_title,
         message=dialog_message,
-        text=text,
+        text=ph,
         button=[default_button, cancel_button],
         defaultButton=default_button,
         cancelButton=cancel_button,
@@ -27,7 +27,9 @@ def path_dialog(placeholder=None):
         output = cmds.promptDialog(query=True, text=True)
         if output:
             # Do stuff here
-            set_images_path(text)
+            print(output)
+            set_images_path(output)
+            return output
         else:
             # If input is blank
             cmds.warning(dialog_title + ": The input can't be blank")
@@ -44,7 +46,7 @@ def main():
     # Construct output path
     render_path = os.path.abspath(os.path.join(file_directory, '..', '..', '..', 'published', 'render'))
 
-    path_dialog(render_path)
+    output = path_dialog(render_path)
 
     # Print workspace
     rules = cmds.workspace(fileRule=True, q=True)
