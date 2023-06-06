@@ -6,6 +6,7 @@ import maya.cmds as cmds
 import os
 import datetime
 import subprocess
+from pathlib import Path
 
 def playblast_dialog(placeholder=None):
     ph = placeholder if placeholder else os.path.join(cmds.workspace(q=True, rd=True), "images")
@@ -62,7 +63,7 @@ def playblast(folder=None):
     quality = 100
 
     # Set the time range
-    start = cmds.playbackOptions(q=True, min=True)
+    current_frame = cmds.currentTime(query=True)
 
     # Create the playblast
     pb = cmds.playblast(
@@ -73,13 +74,13 @@ def playblast(folder=None):
         percent=100,
         width=width,
         height=height,
-        startTime=start,
-        endTime=start,
+        fr=current_frame,
         viewer=False,
         showOrnaments=False,
         offScreen=True
     )
-    subprocess.Popen(fr'explorer "{folder}"')
+    print(Path(folder).resolve())
+    subprocess.Popen(fr'explorer "{Path(folder).resolve()}"')
     return pb
 
 

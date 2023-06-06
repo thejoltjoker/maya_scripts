@@ -11,6 +11,8 @@ import maya.app.renderSetup.model.collection as collection
 import maya.app.renderSetup.model.renderLayer as renderLayer
 import maya.app.renderSetup.model.renderSetup as renderSetup
 import maya.cmds as cmds
+
+
 def get_or_create_layer(name):
     rs = renderSetup.instance()
     # Create and append the render layer
@@ -19,6 +21,8 @@ def get_or_create_layer(name):
     except Exception as e:
         rl = rs.createRenderLayer(name)
     return rl
+
+
 def create_layer(layer_name, nodes=None, collections=None):
     # Get selected objects
     camera = cmds.ls(selection=True)[0]
@@ -29,7 +33,6 @@ def create_layer(layer_name, nodes=None, collections=None):
     frames = cmds.getAttr(camShape + '.notes').split('-')
     startFrame = frames[0].rstrip()
     endFrame = frames[-1].rstrip()
-
 
     camCol = rl.createCollection('cam_' + layerName)
     camSel = camCol.getSelector()
@@ -64,9 +67,11 @@ def create_layer(layer_name, nodes=None, collections=None):
         cmds.editRenderLayerAdjustment(cam + '.primaryEngine')
         cmds.setAttr(cam + '.primaryEngine', 0)
 
+
 def main():
     """docstring for main"""
     pass
+
 
 if __name__ == '__main__':
     main()
