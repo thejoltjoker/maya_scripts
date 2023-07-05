@@ -25,7 +25,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "NE" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.25 
@@ -60,7 +59,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "Outl" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.25 
@@ -95,7 +93,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "Hshd" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.25 
@@ -130,7 +127,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "CE" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -165,7 +161,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "BR" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -200,7 +195,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "VFB" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.2 
@@ -235,7 +229,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "scriptMenu" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.2 
@@ -244,7 +237,7 @@ global proc shelf_Johannes () {
         -style "iconOnly" 
         -marginWidth 1
         -marginHeight 1
-        -command "import imp\nfoo = imp.load_source('maya', 'C:/Users/JohannesAndersson/OneDrive - Frank Valiant AB/Desktop/scripts/maya_scripts/scripts_to_menu.py')\nmaya.create_menu()" 
+        -command "import imp\nfoo = imp.load_source('maya', 'T:/personal/johannesAndersson/repos/maya_scripts/scripts_to_menu.py')\nmaya.create_menu()" 
         -sourceType "python" 
         -commandRepeatable 1
         -flat 1
@@ -270,7 +263,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "Hist" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.25 
@@ -305,7 +297,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "FT" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.25 
@@ -340,7 +331,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "CP" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.3 
@@ -375,7 +365,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "cnstDel" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.2 
@@ -410,7 +399,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "venvpr" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.2 
@@ -445,7 +433,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "path" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.2 
@@ -480,7 +467,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "check" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.2 
@@ -515,7 +501,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "rLayers" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -550,7 +535,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "Relax.png" 
@@ -585,7 +569,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "Sculpt.png" 
@@ -620,7 +603,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "slideEdgeTool.png" 
@@ -655,7 +637,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "polyMirrorGeometry.png" 
@@ -690,7 +671,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "polyUnite.png" 
@@ -724,7 +704,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "polyMerge.png" 
@@ -759,7 +738,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "rmRS" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -794,7 +772,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "rmRenUi" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -829,7 +806,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "delLock" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -864,7 +840,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "nClothCacheReplace.png" 
@@ -899,7 +874,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "nClothCacheDelete.png" 
@@ -933,7 +907,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "interactivePlayback.png" 
@@ -943,41 +916,6 @@ global proc shelf_Johannes () {
         -marginHeight 1
         -command "InteractivePlayback" 
         -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "from sequence.maya.tools.sanity_check import checklist\nreload(checklist)\nchecklist.SanityCheck()" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "from sequence.maya.tools.sanity_check import checklist\nreload(ch..." 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "sCheck" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "pythonFamily.png" 
-        -image1 "pythonFamily.png" 
-        -style "iconOnly" 
-        -marginWidth 1
-        -marginHeight 1
-        -command "from sequence.maya.tools.sanity_check import checklist\nreload(checklist)\nchecklist.SanityCheck()" 
-        -sourceType "python" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -1002,7 +940,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "tglMb" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -1037,7 +974,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "C:/ProgramData/Redshift/Plugins/Maya/Common/icons/rs_rv.png" 
@@ -1071,7 +1007,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "pythonFamily.png" 
@@ -1105,7 +1040,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "skReload" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -1140,7 +1074,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "rafiki" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -1175,7 +1108,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "updateAov" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -1186,75 +1118,6 @@ global proc shelf_Johannes () {
         -marginHeight 1
         -command "redshiftUpdateActiveAovList()" 
         -sourceType "mel" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "import maya.cmds as cmds\nfrom importlib import reload\n\nfrom maya_scripts.scripts.experimental import cleanup_cad\nreload(cleanup_cad)\ncleanup_cad.uninstance()" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "import maya.cmds as cmds\nfrom importlib import reload\n\nfrom maya..." 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -imageOverlayLabel "cleanCad" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "pythonFamily.png" 
-        -image1 "pythonFamily.png" 
-        -style "iconOnly" 
-        -marginWidth 1
-        -marginHeight 1
-        -command "import maya.cmds as cmds\nfrom importlib import reload\n\nfrom maya_scripts.scripts.experimental import cleanup_cad\nreload(cleanup_cad)\ncleanup_cad.main('test')" 
-        -sourceType "python" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "from importlib import reload\n\nfrom rafiki.maya.tools.cad_cleaner import cad_cleaner\nreload(cad_cleaner)\ncad_cleaner.CadCleaner()" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "from importlib import reload\n\nfrom rafiki.maya.tools.cad_cleaner..." 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "pythonFamily.png" 
-        -image1 "pythonFamily.png" 
-        -style "iconOnly" 
-        -marginWidth 1
-        -marginHeight 1
-        -command "from importlib import reload\n\nfrom rafiki.maya.tools.cad_cleaner import app as cc\nreload(cc)\ncc.CadCleaner()" 
-        -sourceType "python" 
         -commandRepeatable 1
         -flat 1
     ;
@@ -1279,7 +1142,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "fixCspace" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -1289,40 +1151,6 @@ global proc shelf_Johannes () {
         -marginWidth 1
         -marginHeight 1
         -command "import maya.cmds as cmds\nfrom importlib import reload\n\nfrom maya_scripts.scripts.standalone import fix_color_space_standalone\nreload(fix_color_space_standalone)\nfix_color_space_standalone.browse_and_run()" 
-        -sourceType "python" 
-        -commandRepeatable 1
-        -flat 1
-    ;
-    shelfButton
-        -enableCommandRepeat 1
-        -flexibleWidthType 3
-        -flexibleWidthValue 32
-        -enable 1
-        -width 35
-        -height 34
-        -manage 1
-        -visible 1
-        -preventOverride 0
-        -annotation "import maya.cmds as cmds\nfrom importlib import reload\n\nfrom maya_scripts.scripts.rendering import furthest_vert_from_camera\nreload(furthest_vert_from_camera)\nfurthest_vert_from_camera.main()" 
-        -enableBackground 0
-        -backgroundColor 0 0 0 
-        -highlightColor 0.321569 0.521569 0.65098 
-        -align "center" 
-        -label "import maya.cmds as cmds\nfrom importlib import reload\n\nfrom maya..." 
-        -labelOffset 0
-        -rotation 0
-        -flipX 0
-        -flipY 0
-        -useAlpha 1
-        -font "plainLabelFont" 
-        -overlayLabelColor 0.8 0.8 0.8 
-        -overlayLabelBackColor 0 0 0 0.5 
-        -image "pythonFamily.png" 
-        -image1 "pythonFamily.png" 
-        -style "iconOnly" 
-        -marginWidth 1
-        -marginHeight 1
-        -command "import maya.cmds as cmds\nfrom importlib import reload\n\nfrom maya_scripts.scripts.rendering import furthest_vert_from_camera\nreload(furthest_vert_from_camera)\nfurthest_vert_from_camera.main()" 
         -sourceType "python" 
         -commandRepeatable 1
         -flat 1
@@ -1348,7 +1176,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -imageOverlayLabel "RA" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
@@ -1383,7 +1210,6 @@ global proc shelf_Johannes () {
         -flipX 0
         -flipY 0
         -useAlpha 1
-        -font "plainLabelFont" 
         -overlayLabelColor 0.8 0.8 0.8 
         -overlayLabelBackColor 0 0 0 0.5 
         -image "C:\\Users\\JohannesAndersson\\OneDrive - Frank Valiant AB\\Desktop\\scripts\\maya_scripts\\scripts\\.icons\\mayacharm.png" 
@@ -1392,6 +1218,542 @@ global proc shelf_Johannes () {
         -marginWidth 1
         -marginHeight 1
         -command "import maya_scripts.scripts.scripting.mayacharm\nfrom importlib import reload\nreload(maya_scripts.scripts.scripting.mayacharm)\nmaya_scripts.scripts.scripting.mayacharm.main()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "set_images_path.py- Set image path to match the pipeline and create output folder if it doesn't exist." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Set Images Path" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:\\Users\\JohannesAndersson\\OneDrive - Frank Valiant AB\\Desktop\\scripts\\maya_scripts\\scripts\\.icons\\set_images_path.png" 
+        -image1 "C:\\Users\\JohannesAndersson\\OneDrive - Frank Valiant AB\\Desktop\\scripts\\maya_scripts\\scripts\\.icons\\set_images_path.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya_scripts.scripts.rendering.set_images_path\nfrom importlib import reload\nreload(maya_scripts.scripts.rendering.set_images_path)\nmaya_scripts.scripts.rendering.set_images_path.main()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Dirmap" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Dirmap" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "Dirm" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya_scripts.scripts.files.dirmap\nfrom importlib import reload\nreload(maya_scripts.scripts.files.dirmap)\nmaya_scripts.scripts.files.dirmap.main()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "#!/usr/bin/env python3\n\"\"\"beaver.py\nProject specific script for \"beaver\"\n\"\"\"\nimport random\nimport sys\n\nfrom maya import cmds, mel\nfrom maya_scripts.scripts.rendering import create_render_layers as crl\nfrom importlib import reload\n\nreload(crl)\n\nimport logging\n\nlogging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(name)s %(levelname)s: %(message)s')\nlogger = logging.getLogger()\n\n\ndef dialog_prompt(dialog_title='Dialog Window', message='Enter input:', default_button='OK', cancel_button='Cancel'):\n    dialog = cmds.promptDialog(\n        title=dialog_title,\n        message=message,\n        button=[default_button, cancel_button],\n        defaultButton=default_button,\n        cancelButton=cancel_button,\n        dismissString=cancel_button)\n\n    if dialog == default_button:\n        output = cmds.promptDialog(query=True, text=True)\n        if output:\n            return output\n        else:\n            # If input is blank\n            cmds.warning(dialog_title + \": The input can't be blank\")\n\n    return False\n\n\ndef create_groups(name, container='groups_grp'):\n    groups = {}\n\n    if not cmds.ls(container):\n        container = cmds.group(name=container, em=True)\n\n    # Main group\n    main = cmds.ls(f'{name}_grp')\n    if not main:\n        main = cmds.group(name=f'{name}_grp', em=True)\n    try:\n        main = cmds.parent(main, container)\n    except:\n        pass\n    groups[name] = main\n    # Children\n    children = ['geo', 'light']\n    for child in children:\n        group_name = f'{name}_{child}_grp'\n        group = cmds.ls(group_name)\n        if not group:\n            group = cmds.group(name=group_name, em=True)\n        try:\n            group = cmds.parent(group, main)\n        except:\n            pass\n        groups[child] = group\n    return groups\n\n\ndef create_sets(name):\n    cmds.select(clear=True)\n    set_names = ['include', 'exclude', 'light']\n    nodes = []\n    sets = {}\n    for s in set_names:\n        node = crl.get_or_create_set(f'{name}_{s}_set')\n        nodes.append(node)\n        sets[s] = node\n\n    container = crl.get_or_create_set(f'{name}_set', nodes)\n    return sets\n\n\ndef remove_suffix(input_string, separator='_'):\n    split_string = input_string.split(separator)\n    if len(split_string) > 1:\n        split_string = split_string[:-1]\n    return separator.join(split_string)\n\n\ndef create_cube():\n    \"\"\"Create group and layer\n    \"\"\"\n    selection = cmds.ls(sl=True)\n    if sys.platform == 'darwin':\n        # TEMP SETUP\n        name = 'beaver'\n        cmds.file('/Users/johannes/Desktop/temp/test.ma', o=True, f=True)\n        # cmds.file(new=True, f=True)\n        # name = 'beaver'\n        # cmds.group(n='groups_grp', em=True)\n        # camera = cmds.camera()\n        # cmds.rename(camera[0], 'renderCam_cam')\n        cmds.select('pCube1')\n        # END TEMP SETUP\n\n    else:\n        name = dialog_prompt(message='Enter name of group/layer:')\n\n    if name:\n        # Create groups\n        groups = create_groups(name)\n        sets = create_sets(name)\n        env_set = crl.get_or_create_set('env_set')\n\n        # Create redshift visibility node or select if already exists\n        cmds.select(groups.get('geo'), r=True)\n        visibility_node_name = f'{remove_suffix(groups.get(\"geo\")[0])}_rsVisibility'\n        visibility_node = cmds.ls(visibility_node_name)\n        if not visibility_node:\n            visibility_node = mel.eval('redshiftCreateVisibilityNode();')\n            visibility_node = cmds.rename(visibility_node, visibility_node_name)\n        else:\n            visibility_node = visibility_node[0]\n\n        # Copy light setup\n        lights_group = cmds.duplicate('template_lights_grp', renameChildren=True)[0]\n        lights_nodes = cmds.listRelatives(lights_group, allDescendents=True)\n        for node in lights_nodes:\n            cmds.rename(node, node.replace('template', name).rstrip('1'))\n\n        # Ugly workaround\n        cmds.delete(groups['light'])\n        lights_group = cmds.rename(lights_group, groups['light'])\n        cmds.parent(lights_group, groups[name])\n\n        # Put selection in geo group\n        cmds.select(clear=True)\n        try:\n            cmds.parent(selection, groups.get('geo'))\n        except:\n            pass\n\n        # Create render setup instance\n        rs = crl.render_setup_instance()\n\n        # Create beauty render layer\n        layer_name = f'{name}_beauty'\n\n        layer = crl.get_or_create_layer(rs, layer_name)\n\n        # Create group\n        group = crl.get_or_create_group(layer, f'{layer_name}_base_grp')\n\n        # Create collections\n        # Collection: include\n        include_col = crl.get_or_create_collection(group, f'{layer_name}_include')\n\n        # include everything in set\n        crl.set_collection_filters(include_col, filter_type=5, pattern=sets['include'])\n\n        # Create subcollections\n        # include_transform_col = crl.get_or_create_collection(include_col, f'{layer_name}_include_transform')\n        # crl.set_collection_filters(include_transform_col, filter_type=1, pattern='*')\n        # include_shapes_col = crl.get_or_create_collection(include_transform_col, f'{layer_name}_include_shape')\n        # crl.set_collection_filters(include_shapes_col, filter_type=2, pattern='*')\n\n        # Add geo to include set\n        cmds.sets(groups['geo'], include=sets['include'])\n\n        # Turn on primary visibility\n        # crl.set_override(include_shapes_col, visibility_node, 'enableVisibilityOverrides', 1)\n        # crl.set_override(include_shapes_col, visibility_node, 'primaryRayinclude', 1)\n\n        # Collection: exclude\n        exclude_col = crl.get_or_create_collection(group, f'{layer_name}_exclude')\n\n        # exclude everything in set\n        crl.set_collection_filters(exclude_col, filter_type=5, pattern=sets['exclude'])\n        exclude_col.setSelfEnabled(0)\n\n\n        # Collection: Light\n        light_col = crl.get_or_create_collection(group, f'{layer_name}_light')\n        crl.set_collection_filters(light_col, filter_type=1, pattern=sets['light'])\n\n        # Add lights to set\n        cmds.sets(groups['light'], include=sets['light'])\n\n\n        # Collection: camera\n        camera = 'renderCam_cam'\n        camera_shape = cmds.listRelatives(camera, children=True)[0]\n        camera_col = crl.get_or_create_collection(group, f'{layer_name}_cam')\n        crl.set_collection_filters(camera_col, filter_type=8, pattern=camera_shape, custom_filter_type='camera')\n        crl.set_override(camera_col, camera_shape, 'renderable', True)\n\n        # Add general lights\n        # lights_nodes = cmds.ls('primary_lights_grp', l=True)\n        # lights_nodes.extend(groups.get('lights'))\n        # print(lights_nodes)\n        # crl.add_static_selection(lights_col, lights_nodes)\n\n        # Set env overrides\n        env_group = crl.get_or_create_group(group, f'{layer_name}_env')\n        env_col = crl.get_or_create_collection(env_group, f'{layer_name}_env')\n        cube_vis_node = cmds.ls('cube_rsVisibility', l=True)[0]\n        vis_nodes = cmds.ls('cube_geo', l=True)\n        vis_nodes.append(cube_vis_node)\n        crl.set_collection_filters(env_col, filter_type=5, pattern=env_set)\n\n        vis_env_col = crl.get_or_create_collection(env_group, f'{layer_name}_env_visibility')\n        crl.set_collection_filters(vis_env_col, filter_type=5, pattern=cube_vis_node)\n        crl.set_override(vis_env_col, cube_vis_node, 'enable', 1)\n        crl.set_override(vis_env_col, cube_vis_node, 'primaryRayVisible', 0)\n\n\n        # Shadow layer\n        shadow_layer_name = f'{name}_shadow'\n\n        layer = crl.get_or_create_layer(rs, shadow_layer_name)\n\n        # Create group\n        group = crl.get_or_create_group(layer, f'{shadow_layer_name}_base_grp')\n\n        # Create collections\n        # Collection: include\n        include_col = crl.get_or_create_collection(group, f'{shadow_layer_name}_include')\n\n        # include everything in set\n        crl.set_collection_filters(include_col, filter_type=5, pattern=sets['include'])\n\n        # Turn off primary visibility\n        vis_geo_col = crl.get_or_create_collection(group, f'{shadow_layer_name}_geo_visibility')\n        crl.set_collection_filters(vis_geo_col, filter_type=5, pattern=visibility_node)\n        crl.set_override(vis_geo_col, visibility_node, 'enable', 1)\n        crl.set_override(vis_geo_col, visibility_node, 'primaryRayVisible', 0)\n\n\n        # Collection: exclude\n        exclude_col = crl.get_or_create_collection(group, f'{shadow_layer_name}_exclude')\n\n        # exclude everything in set\n        crl.set_collection_filters(exclude_col, filter_type=5, pattern=sets['exclude'])\n        exclude_col.setSelfEnabled(0)\n\n        # Collection: Light\n        light_col = crl.get_or_create_collection(group, f'{shadow_layer_name}_light')\n        crl.set_collection_filters(light_col, filter_type=1, pattern=cmds.ls('primary_lights_grp', l=True)[0])\n\n\n        # Collection: camera\n        camera = 'renderCam_cam'\n        camera_shape = cmds.listRelatives(camera, children=True)[0]\n        camera_col = crl.get_or_create_collection(group, f'{shadow_layer_name}_cam')\n        crl.set_collection_filters(camera_col, filter_type=8, pattern=camera_shape, custom_filter_type='camera')\n        crl.set_override(camera_col, camera_shape, 'renderable', True)\n\n\n        # Set env overrides\n        env_group = crl.get_or_create_group(group, f'{shadow_layer_name}_env')\n        env_col = crl.get_or_create_collection(env_group, f'{shadow_layer_name}_env')\n        cube_vis_node = cmds.ls('cube_rsVisibility', l=True)[0]\n        vis_nodes = cmds.ls('cube_geo', l=True)\n        vis_nodes.append(cube_vis_node)\n        crl.set_collection_filters(env_col, filter_type=5, pattern=env_set)\n\n        vis_env_col = crl.get_or_create_collection(env_group, f'{shadow_layer_name}_env_visibility')\n        crl.set_collection_filters(vis_env_col, filter_type=5, pattern=cube_vis_node)\n        crl.set_override(vis_env_col, cube_vis_node, 'enable', 1)\n        crl.set_override(vis_env_col, cube_vis_node, 'primaryRayVisible', 1)\n\n        matte_env_col = crl.get_or_create_collection(env_group, f'{shadow_layer_name}_env_matte')\n        cube_matte_params = 'cube_rsMatteParameters'\n        crl.set_collection_filters(matte_env_col, filter_type=5, pattern=cube_matte_params)\n        crl.set_override(matte_env_col, cube_matte_params, 'matteEnable', 1)\n        # # Create layer\n        # shadow_layer = crl.get_or_create_layer(rs, shadow_layer_name)\n        #\n        # # Create collection for geometry\n        # include_col = crl.get_or_create_collection(shadow_layer, f'{shadow_layer_name}_include')\n        # include_sets_col = crl.get_or_create_collection(include_col, f'{layer_name}_visibility')\n        # crl.set_collection_filters(include_sets_col, filter_type=5, pattern=visibility_node)\n        # crl.set_override(include_sets_col, visibility_node, 'enable', 1)\n        # crl.set_override(include_sets_col, visibility_node, 'primaryRayVisible', 1)\n        #\n        # # Create collection for parameters\n        # params_col = crl.get_or_create_collection(shadow_layer, f'{shadow_layer_name}_params')\n        #\n        # # List of nodes to include\n        # shadow_nodes = cmds.ls('cube_geo', l=True)\n        # shadow_nodes.extend(cmds.ls('primary_lights_grp', l=True))\n        # shadow_nodes.extend(cmds.ls(groups.get('geo'), l=True))\n        # crl.add_static_selection(include_col, shadow_nodes)\n        #\n        # # Add nodes to collections\n\n\n        #\n        # # Subcollection for sets\n        # include_sets_col = crl.get_or_create_collection(shadow_layer, f'{shadow_layer_name}_visibility')\n        # crl.set_collection_filters(include_sets_col, filter_type=5, pattern=visibility_node)\n        # crl.set_override(include_sets_col, visibility_node, 'enable', 1)\n        # crl.set_override(include_sets_col, visibility_node, 'primaryRayVisible', 0)\n        #\n        # if cmds.ls('rsAOVControl'):\n        #     aovs_col = crl.get_or_create_collection(shadow_layer, f'{shadow_layer_name}_aovs')\n        #     crl.set_collection_filters(aovs_col, filter_type=1, pattern='rsAOVControl')\n        #     crl.set_override(aovs_col, 'rsAOVControl', 'enableBeauty', 0)\n        #     crl.set_override(aovs_col, 'rsAOVControl', 'enableRawBeauty', 0)\n        #     crl.set_override(aovs_col, 'rsAOVControl', 'enableUtility', 0)\n\n\ndef main():\n    \"\"\"docstring for main\"\"\"\n    create_cube()\n\n\nif __name__ == '__main__':\n    main()\n" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "#!/usr/bin/env python3\n\"\"\"beaver.py\nProject specific script for ..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "bv" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "#!/usr/bin/env python3\n\"\"\"beaver.py\nProject specific script for \"beaver\"\n\"\"\"\nimport random\nimport sys\n\nfrom maya import cmds, mel\nfrom maya_scripts.scripts.rendering import create_render_layers as crl\nfrom importlib import reload\n\nreload(crl)\n\nimport logging\n\nlogging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(name)s %(levelname)s: %(message)s')\nlogger = logging.getLogger()\n\n\ndef dialog_prompt(dialog_title='Dialog Window', message='Enter input:', default_button='OK', cancel_button='Cancel'):\n    dialog = cmds.promptDialog(\n        title=dialog_title,\n        message=message,\n        button=[default_button, cancel_button],\n        defaultButton=default_button,\n        cancelButton=cancel_button,\n        dismissString=cancel_button)\n\n    if dialog == default_button:\n        output = cmds.promptDialog(query=True, text=True)\n        if output:\n            return output\n        else:\n            # If input is blank\n            cmds.warning(dialog_title + \": The input can't be blank\")\n\n    return False\n\n\ndef create_groups(name, container='groups_grp'):\n    groups = {}\n\n    if not cmds.ls(container):\n        container = cmds.group(name=container, em=True)\n\n    # Main group\n    main = cmds.ls(f'{name}_grp')\n    if not main:\n        main = cmds.group(name=f'{name}_grp', em=True)\n    try:\n        main = cmds.parent(main, container)\n    except:\n        pass\n    groups[name] = main\n    # Children\n    children = ['geo', 'light']\n    for child in children:\n        group_name = f'{name}_{child}_grp'\n        group = cmds.ls(group_name)\n        if not group:\n            group = cmds.group(name=group_name, em=True)\n        try:\n            group = cmds.parent(group, main)\n        except:\n            pass\n        groups[child] = group\n    return groups\n\n\ndef create_sets(name):\n    cmds.select(clear=True)\n    set_names = ['include', 'exclude', 'light']\n    nodes = []\n    sets = {}\n    for s in set_names:\n        node = crl.get_or_create_set(f'{name}_{s}_set')\n        nodes.append(node)\n        sets[s] = node\n\n    container = crl.get_or_create_set(f'{name}_set', nodes)\n    return sets\n\n\ndef remove_suffix(input_string, separator='_'):\n    split_string = input_string.split(separator)\n    if len(split_string) > 1:\n        split_string = split_string[:-1]\n    return separator.join(split_string)\n\n\ndef create_cube():\n    \"\"\"Create group and layer\n    \"\"\"\n    selection = cmds.ls(sl=True)\n    if sys.platform == 'darwin':\n        # TEMP SETUP\n        name = 'beaver'\n        cmds.file('/Users/johannes/Desktop/temp/test.ma', o=True, f=True)\n        # cmds.file(new=True, f=True)\n        # name = 'beaver'\n        # cmds.group(n='groups_grp', em=True)\n        # camera = cmds.camera()\n        # cmds.rename(camera[0], 'renderCam_cam')\n        cmds.select('pCube1')\n        # END TEMP SETUP\n\n    else:\n        name = dialog_prompt(message='Enter name of group/layer:')\n\n    if name:\n        # Create groups\n        groups = create_groups(name)\n        sets = create_sets(name)\n        env_set = crl.get_or_create_set('env_set')\n\n        # Create redshift visibility node or select if already exists\n        cmds.select(groups.get('geo'), r=True)\n        visibility_node_name = f'{remove_suffix(groups.get(\"geo\")[0])}_rsVisibility'\n        visibility_node = cmds.ls(visibility_node_name)\n        if not visibility_node:\n            visibility_node = mel.eval('redshiftCreateVisibilityNode();')\n            visibility_node = cmds.rename(visibility_node, visibility_node_name)\n        else:\n            visibility_node = visibility_node[0]\n\n        # Copy light setup\n        lights_group = cmds.duplicate('template_lights_grp', renameChildren=True)[0]\n        lights_nodes = cmds.listRelatives(lights_group, allDescendents=True)\n        for node in lights_nodes:\n            cmds.rename(node, node.replace('template', name).rstrip('1'))\n\n        # Ugly workaround\n        cmds.delete(groups['light'])\n        lights_group = cmds.rename(lights_group, groups['light'])\n        cmds.parent(lights_group, groups[name])\n\n        # Put selection in geo group\n        cmds.select(clear=True)\n        try:\n            cmds.parent(selection, groups.get('geo'))\n        except:\n            pass\n\n        # Create render setup instance\n        rs = crl.render_setup_instance()\n\n        # Create beauty render layer\n        layer_name = f'{name}_beauty'\n\n        layer = crl.get_or_create_layer(rs, layer_name)\n\n        # Create group\n        group = crl.get_or_create_group(layer, f'{layer_name}_base_grp')\n\n        # Create collections\n        # Collection: include\n        include_col = crl.get_or_create_collection(group, f'{layer_name}_include')\n\n        # include everything in set\n        crl.set_collection_filters(include_col, filter_type=5, pattern=sets['include'])\n\n        # Create subcollections\n        # include_transform_col = crl.get_or_create_collection(include_col, f'{layer_name}_include_transform')\n        # crl.set_collection_filters(include_transform_col, filter_type=1, pattern='*')\n        # include_shapes_col = crl.get_or_create_collection(include_transform_col, f'{layer_name}_include_shape')\n        # crl.set_collection_filters(include_shapes_col, filter_type=2, pattern='*')\n\n        # Add geo to include set\n        cmds.sets(groups['geo'], include=sets['include'])\n\n        # Turn on primary visibility\n        # crl.set_override(include_shapes_col, visibility_node, 'enableVisibilityOverrides', 1)\n        # crl.set_override(include_shapes_col, visibility_node, 'primaryRayinclude', 1)\n\n        # Collection: exclude\n        exclude_col = crl.get_or_create_collection(group, f'{layer_name}_exclude')\n\n        # exclude everything in set\n        crl.set_collection_filters(exclude_col, filter_type=5, pattern=sets['exclude'])\n        exclude_col.setSelfEnabled(0)\n\n\n        # Collection: Light\n        light_col = crl.get_or_create_collection(group, f'{layer_name}_light')\n        crl.set_collection_filters(light_col, filter_type=1, pattern=sets['light'])\n\n        # Add lights to set\n        cmds.sets(groups['light'], include=sets['light'])\n\n\n        # Collection: camera\n        camera = 'renderCam_cam'\n        camera_shape = cmds.listRelatives(camera, children=True)[0]\n        camera_col = crl.get_or_create_collection(group, f'{layer_name}_cam')\n        crl.set_collection_filters(camera_col, filter_type=8, pattern=camera_shape, custom_filter_type='camera')\n        crl.set_override(camera_col, camera_shape, 'renderable', True)\n\n        # Add general lights\n        # lights_nodes = cmds.ls('primary_lights_grp', l=True)\n        # lights_nodes.extend(groups.get('lights'))\n        # print(lights_nodes)\n        # crl.add_static_selection(lights_col, lights_nodes)\n\n        # Set env overrides\n        env_group = crl.get_or_create_group(group, f'{layer_name}_env')\n        env_col = crl.get_or_create_collection(env_group, f'{layer_name}_env')\n        cube_vis_node = cmds.ls('cube_rsVisibility', l=True)[0]\n        vis_nodes = cmds.ls('cube_geo', l=True)\n        vis_nodes.append(cube_vis_node)\n        crl.set_collection_filters(env_col, filter_type=5, pattern=env_set)\n\n        vis_env_col = crl.get_or_create_collection(env_group, f'{layer_name}_env_visibility')\n        crl.set_collection_filters(vis_env_col, filter_type=5, pattern=cube_vis_node)\n        crl.set_override(vis_env_col, cube_vis_node, 'enable', 1)\n        crl.set_override(vis_env_col, cube_vis_node, 'primaryRayVisible', 0)\n\n\n        # Shadow layer\n        shadow_layer_name = f'{name}_shadow'\n\n        layer = crl.get_or_create_layer(rs, shadow_layer_name)\n\n        # Create group\n        group = crl.get_or_create_group(layer, f'{shadow_layer_name}_base_grp')\n\n        # Create collections\n        # Collection: include\n        include_col = crl.get_or_create_collection(group, f'{shadow_layer_name}_include')\n\n        # include everything in set\n        crl.set_collection_filters(include_col, filter_type=5, pattern=sets['include'])\n\n        # Turn off primary visibility\n        vis_geo_col = crl.get_or_create_collection(group, f'{shadow_layer_name}_geo_visibility')\n        crl.set_collection_filters(vis_geo_col, filter_type=5, pattern=visibility_node)\n        crl.set_override(vis_geo_col, visibility_node, 'enable', 1)\n        crl.set_override(vis_geo_col, visibility_node, 'primaryRayVisible', 0)\n\n\n        # Collection: exclude\n        exclude_col = crl.get_or_create_collection(group, f'{shadow_layer_name}_exclude')\n\n        # exclude everything in set\n        crl.set_collection_filters(exclude_col, filter_type=5, pattern=sets['exclude'])\n        exclude_col.setSelfEnabled(0)\n\n        # Collection: Light\n        light_col = crl.get_or_create_collection(group, f'{shadow_layer_name}_light')\n        crl.set_collection_filters(light_col, filter_type=1, pattern=cmds.ls('primary_lights_grp', l=True)[0])\n\n\n        # Collection: camera\n        camera = 'renderCam_cam'\n        camera_shape = cmds.listRelatives(camera, children=True)[0]\n        camera_col = crl.get_or_create_collection(group, f'{shadow_layer_name}_cam')\n        crl.set_collection_filters(camera_col, filter_type=8, pattern=camera_shape, custom_filter_type='camera')\n        crl.set_override(camera_col, camera_shape, 'renderable', True)\n\n\n        # Set env overrides\n        env_group = crl.get_or_create_group(group, f'{shadow_layer_name}_env')\n        env_col = crl.get_or_create_collection(env_group, f'{shadow_layer_name}_env')\n        cube_vis_node = cmds.ls('cube_rsVisibility', l=True)[0]\n        vis_nodes = cmds.ls('cube_geo', l=True)\n        vis_nodes.append(cube_vis_node)\n        crl.set_collection_filters(env_col, filter_type=5, pattern=env_set)\n\n        vis_env_col = crl.get_or_create_collection(env_group, f'{shadow_layer_name}_env_visibility')\n        crl.set_collection_filters(vis_env_col, filter_type=5, pattern=cube_vis_node)\n        crl.set_override(vis_env_col, cube_vis_node, 'enable', 1)\n        crl.set_override(vis_env_col, cube_vis_node, 'primaryRayVisible', 1)\n\n        matte_env_col = crl.get_or_create_collection(env_group, f'{shadow_layer_name}_env_matte')\n        cube_matte_params = 'cube_rsMatteParameters'\n        crl.set_collection_filters(matte_env_col, filter_type=5, pattern=cube_matte_params)\n        crl.set_override(matte_env_col, cube_matte_params, 'matteEnable', 1)\n        # # Create layer\n        # shadow_layer = crl.get_or_create_layer(rs, shadow_layer_name)\n        #\n        # # Create collection for geometry\n        # include_col = crl.get_or_create_collection(shadow_layer, f'{shadow_layer_name}_include')\n        # include_sets_col = crl.get_or_create_collection(include_col, f'{layer_name}_visibility')\n        # crl.set_collection_filters(include_sets_col, filter_type=5, pattern=visibility_node)\n        # crl.set_override(include_sets_col, visibility_node, 'enable', 1)\n        # crl.set_override(include_sets_col, visibility_node, 'primaryRayVisible', 1)\n        #\n        # # Create collection for parameters\n        # params_col = crl.get_or_create_collection(shadow_layer, f'{shadow_layer_name}_params')\n        #\n        # # List of nodes to include\n        # shadow_nodes = cmds.ls('cube_geo', l=True)\n        # shadow_nodes.extend(cmds.ls('primary_lights_grp', l=True))\n        # shadow_nodes.extend(cmds.ls(groups.get('geo'), l=True))\n        # crl.add_static_selection(include_col, shadow_nodes)\n        #\n        # # Add nodes to collections\n\n\n        #\n        # # Subcollection for sets\n        # include_sets_col = crl.get_or_create_collection(shadow_layer, f'{shadow_layer_name}_visibility')\n        # crl.set_collection_filters(include_sets_col, filter_type=5, pattern=visibility_node)\n        # crl.set_override(include_sets_col, visibility_node, 'enable', 1)\n        # crl.set_override(include_sets_col, visibility_node, 'primaryRayVisible', 0)\n        #\n        # if cmds.ls('rsAOVControl'):\n        #     aovs_col = crl.get_or_create_collection(shadow_layer, f'{shadow_layer_name}_aovs')\n        #     crl.set_collection_filters(aovs_col, filter_type=1, pattern='rsAOVControl')\n        #     crl.set_override(aovs_col, 'rsAOVControl', 'enableBeauty', 0)\n        #     crl.set_override(aovs_col, 'rsAOVControl', 'enableRawBeauty', 0)\n        #     crl.set_override(aovs_col, 'rsAOVControl', 'enableUtility', 0)\n\n\ndef main():\n    \"\"\"docstring for main\"\"\"\n    create_cube()\n\n\nif __name__ == '__main__':\n    main()\n" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "from pathlib import Path\n\nfrom maya import cmds\n\n\ndef create_preview(path):\n    cur_frame = cmds.currentTime(query=True)\n    # model_panel = cmds.paneLayout('viewPanes', q=True, pane1=True)\n    # cmds.isolateSelect(model_panel, state=1)\n    cmds.select(clear=True)\n    cmds.playblast(fr=cur_frame, fmt='image', compression='png', cf=path, orn=False, v=False)\n    # cmds.isolateSelect(model_panel, state=0)\n    return path\n\n\npath = Path(f'C:/Users/JohannesAndersson/OneDrive - Frank Valiant AB/Desktop/temp/{cmds.ls(sl=True)[0]}.png')\ncreate_preview(path)\n" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "from pathlib import Path\n\nfrom maya import cmds\n\n\ndef create_pre..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "from pathlib import Path\n\nfrom maya import cmds\n\n\ndef create_preview(path):\n    cur_frame = cmds.currentTime(query=True)\n    # model_panel = cmds.paneLayout('viewPanes', q=True, pane1=True)\n    # cmds.isolateSelect(model_panel, state=1)\n    cmds.select(clear=True)\n    cmds.playblast(fr=cur_frame, fmt='image', compression='png', cf=path, orn=False, v=False)\n    # cmds.isolateSelect(model_panel, state=0)\n    return path\n\n\npath = Path(f'C:/Users/JohannesAndersson/OneDrive - Frank Valiant AB/Desktop/temp/{cmds.ls(sl=True)[0]}.png')\ncreate_preview(path)\n\ncmds.warning(path)" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "cmds.refresh(suspend=True)" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "cmds.refresh(suspend=True)" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "cmds.refresh(suspend=True)" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "cmds.refresh(suspend=False)" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "cmds.refresh(suspend=False)" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "cmds.refresh(suspend=False)" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "//pl_unfreeze.mel By Paul Lemeshko\n//SETS ROTATION BASED ON SELECTED FACE\n//HOW TO USE:\n//SELECT A FACE FOR EACH OBJECT AND RUN IN MEL pl_unfreeze\n\n\nglobal proc pl_unfreeze(){\n    string $delUv[];\n    string $projection[];\n    string $objs[]; \n    string $targets[] =`ls -sl`;\n    string $objs2[] =`ls -sl -type \"transform\"`;\n    $targets = stringArrayRemove($objs2, $targets); \n    \n    for ($i=0; $i<size($targets); $i++) $objs[$i] = substituteAllString($targets[$i], `match (\"[.].*\") $targets[$i]`, \"\");\n\n    constructionHistory -toggle true;\n\n    if((`objExists zLocator`)!=1){\n        spaceLocator -n zLocator -p 0 0 0;    \n    }\n        //do unfreeze for component selected objects\n        if (size($objs)>0){\n            \n            for ($i=0; $i<size($objs); $i++){            \n                //snap locator to selected object\n                makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 $objs[$i]; \n                $delUv[$i]=stringArrayToString(`polyMapDel -ch 1 $objs[$i]`, \"\");\n                select $targets[$i];\n                $projection[$i]=stringArrayToString(`polyProjection -ch 1 -type Planar -ibd on -kir  -md b`, \"\");\n                select $targets[$i] zLocator;\n                doCreatePointOnPolyConstraintArgList 2 {   \"0\" ,\"0\" ,\"0\" ,\"1\" ,\"\" ,\"0\" ,\"0\" ,\"0\" ,\"0\" ,\"0\" };\n                delete `listRelatives -typ \"constraint\" zLocator`;\n                setAttr zLocator.rotateX (`getAttr zLocator.rotateX`-90);\n                \n                //snap locator to selected object's pivot\n                vector $p = `getAttr ($objs[$i] + \".rotatePivot\")`;\n                move -rpr ($p.x) ($p.y) ($p.z) zLocator;\n                \n                //snap object to world's origin\n                vector $tran = `getAttr zLocator.translate`;\n                vector $rot = `getAttr zLocator.rotate`;\n                parentConstraint -mo -w 1 zLocator $objs[$i];  \n                move -a 0 0 0 zLocator; rotate -a 0 0 0 zLocator;\n                \n                //restore object's transform\n                select $objs[$i];\n                delete `listRelatives -typ \"constraint\" $objs[$i]` ;\n                makeIdentity -apply true -t 1 -r 1 -s 1 -n 0; \n                move -a ($tran.x) ($tran.y) ($tran.z); rotate -a ($rot.x) ($rot.y) ($rot.z);\n            }\n            delete $projection;\n            delete $delUv;\n            delete -ch $objs;\n        }   \n        //do unfreeze for selected objects  \n        if (size($objs2)>0){  \n            for ($ob in $objs2){                  \n                makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 $ob;   \n                select $ob zLocator;\n                delete `pointConstraint -offset 0 0 0 -weight 1`;        \n                move -rpr 0 0 0 $ob;\n                makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 $ob;        \n                select zLocator $ob;            \n                delete `pointConstraint -offset 0 0 0 -weight 1`;\n            }\n        }    \n    delete zLocator;\n}\npl_unfreeze()" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "//pl_unfreeze.mel By Paul Lemeshko\n//SETS ROTATION BASED ON SELE..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "unfreeze" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "commandButton.png" 
+        -image1 "commandButton.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "//pl_unfreeze.mel By Paul Lemeshko\n//SETS ROTATION BASED ON SELECTED FACE\n//HOW TO USE:\n//SELECT A FACE FOR EACH OBJECT AND RUN IN MEL pl_unfreeze\n\n\nglobal proc pl_unfreeze(){\n    string $delUv[];\n    string $projection[];\n    string $objs[]; \n    string $targets[] =`ls -sl`;\n    string $objs2[] =`ls -sl -type \"transform\"`;\n    $targets = stringArrayRemove($objs2, $targets); \n    \n    for ($i=0; $i<size($targets); $i++) $objs[$i] = substituteAllString($targets[$i], `match (\"[.].*\") $targets[$i]`, \"\");\n\n    constructionHistory -toggle true;\n\n    if((`objExists zLocator`)!=1){\n        spaceLocator -n zLocator -p 0 0 0;    \n    }\n        //do unfreeze for component selected objects\n        if (size($objs)>0){\n            \n            for ($i=0; $i<size($objs); $i++){            \n                //snap locator to selected object\n                makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 $objs[$i]; \n                $delUv[$i]=stringArrayToString(`polyMapDel -ch 1 $objs[$i]`, \"\");\n                select $targets[$i];\n                $projection[$i]=stringArrayToString(`polyProjection -ch 1 -type Planar -ibd on -kir  -md b`, \"\");\n                select $targets[$i] zLocator;\n                doCreatePointOnPolyConstraintArgList 2 {   \"0\" ,\"0\" ,\"0\" ,\"1\" ,\"\" ,\"0\" ,\"0\" ,\"0\" ,\"0\" ,\"0\" };\n                delete `listRelatives -typ \"constraint\" zLocator`;\n                setAttr zLocator.rotateX (`getAttr zLocator.rotateX`-90);\n                \n                //snap locator to selected object's pivot\n                vector $p = `getAttr ($objs[$i] + \".rotatePivot\")`;\n                move -rpr ($p.x) ($p.y) ($p.z) zLocator;\n                \n                //snap object to world's origin\n                vector $tran = `getAttr zLocator.translate`;\n                vector $rot = `getAttr zLocator.rotate`;\n                parentConstraint -mo -w 1 zLocator $objs[$i];  \n                move -a 0 0 0 zLocator; rotate -a 0 0 0 zLocator;\n                \n                //restore object's transform\n                select $objs[$i];\n                delete `listRelatives -typ \"constraint\" $objs[$i]` ;\n                makeIdentity -apply true -t 1 -r 1 -s 1 -n 0; \n                move -a ($tran.x) ($tran.y) ($tran.z); rotate -a ($rot.x) ($rot.y) ($rot.z);\n            }\n            delete $projection;\n            delete $delUv;\n            delete -ch $objs;\n        }   \n        //do unfreeze for selected objects  \n        if (size($objs2)>0){  \n            for ($ob in $objs2){                  \n                makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 $ob;   \n                select $ob zLocator;\n                delete `pointConstraint -offset 0 0 0 -weight 1`;        \n                move -rpr 0 0 0 $ob;\n                makeIdentity -apply true -t 1 -r 1 -s 1 -n 0 $ob;        \n                select zLocator $ob;            \n                delete `pointConstraint -offset 0 0 0 -weight 1`;\n            }\n        }    \n    delete zLocator;\n}\npl_unfreeze()" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Constrain one object to the position/orientation/scale of another." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Parent" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "parentConstraint.png" 
+        -image1 "parentConstraint.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "doCreateParentConstraintArgList 1 { \"0\",\"0\",\"1\",\"1\",\"0\",\"1\",\"1\",\"1\",\"1\",\"\",\"1\" };" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Create Redshift Object Id Node for Selection" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Create Redshift Object Id Node for Selection" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "//10.21.110.11/pipeline/deployment/redshift_v3.5.06/Plugins/Maya/Common/icons/rs_paramId.svg" 
+        -image1 "//10.21.110.11/pipeline/deployment/redshift_v3.5.06/Plugins/Maya/Common/icons/rs_paramId.svg" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "redshiftCreateObjectIdNode()" 
+        -sourceType "mel" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "viewport_to_desktop.py- Description of viewport_to_desktop.py." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Viewport To Desktop" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "VTD" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya_scripts.scripts.rendering.viewport_to_desktop\nfrom importlib import reload\nreload(maya_scripts.scripts.rendering.viewport_to_desktop)\nmaya_scripts.scripts.rendering.viewport_to_desktop.main()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "script_name.py- Description of script_name.py." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Renamer" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:\\repo\\maya_scripts\\scripts\\.icons\\renamer.png" 
+        -image1 "C:\\repo\\maya_scripts\\scripts\\.icons\\renamer.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya_scripts.scripts.workflow.renamer\nfrom importlib import reload\nreload(maya_scripts.scripts.workflow.renamer)\nmaya_scripts.scripts.workflow.renamer.main()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "Pastebin- - Credits to Martin Gunnarson for the great idea." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Pastebin" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "C:\\repo\\maya_scripts\\scripts\\.icons\\pastebin.png" 
+        -image1 "C:\\repo\\maya_scripts\\scripts\\.icons\\pastebin.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya_scripts.scripts.workflow.pastebin\nfrom importlib import reload\nreload(maya_scripts.scripts.workflow.pastebin)\nmaya_scripts.scripts.workflow.pastebin.main()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "create_playblast.py- Description of create_playblast.py." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Create Playblast" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "CP" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya_scripts.scripts.animation.create_playblast\nfrom importlib import reload\nreload(maya_scripts.scripts.animation.create_playblast)\nmaya_scripts.scripts.animation.create_playblast.main()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "import sys\nfrom importlib import reload\nsys.path.append(\"L:/_temp/shotManager/maya/scripts/shotManager\")\nimport shotManager_natalia\nreload(shotManager_natalia)\nshotManager_natalia.ShotManager()" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "import sys\nfrom importlib import reload\nsys.path.append(\"L:/_tem..." 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "shotMgr" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import sys\nfrom importlib import reload\nsys.path.append(\"L:/_temp/shotManager/maya/scripts/shotManager\")\nimport shotManager_natalia\nreload(shotManager_natalia)\nshotManager_natalia.ShotManager()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "add_selected_to_set.py- Description of add_selected_to_set.py." 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Add Selected To Set" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "ASTS" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya_scripts.scripts.misc.add_selected_to_set\nfrom importlib import reload\nreload(maya_scripts.scripts.misc.add_selected_to_set)\nmaya_scripts.scripts.misc.add_selected_to_set.main()" 
+        -sourceType "python" 
+        -commandRepeatable 1
+        -flat 1
+    ;
+    shelfButton
+        -enableCommandRepeat 1
+        -flexibleWidthType 3
+        -flexibleWidthValue 32
+        -enable 1
+        -width 35
+        -height 34
+        -manage 1
+        -visible 1
+        -preventOverride 0
+        -annotation "group.py- Group selected nodes and name the group appropriately" 
+        -enableBackground 0
+        -backgroundColor 0 0 0 
+        -highlightColor 0.321569 0.521569 0.65098 
+        -align "center" 
+        -label "Group" 
+        -labelOffset 0
+        -rotation 0
+        -flipX 0
+        -flipY 0
+        -useAlpha 1
+        -imageOverlayLabel "Grou" 
+        -overlayLabelColor 0.8 0.8 0.8 
+        -overlayLabelBackColor 0 0 0 0.5 
+        -image "pythonFamily.png" 
+        -image1 "pythonFamily.png" 
+        -style "iconOnly" 
+        -marginWidth 1
+        -marginHeight 1
+        -command "import maya_scripts.scripts.housekeeping.group\nfrom importlib import reload\nreload(maya_scripts.scripts.housekeeping.group)\nmaya_scripts.scripts.housekeeping.group.main()" 
         -sourceType "python" 
         -commandRepeatable 1
         -flat 1
