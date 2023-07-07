@@ -6,6 +6,14 @@ import maya.cmds as cmds
 import os
 import datetime
 import subprocess
+import subprocess
+
+def run_ffmpeg_command(command):
+    try:
+        subprocess.run(command, check=True, shell=True)
+    except subprocess.CalledProcessError as e:
+        print(f"FFmpeg command failed with error: {e}")
+
 
 def playblast_dialog(placeholder=None):
     ph = placeholder if placeholder else os.path.join(cmds.workspace(q=True, rd=True), "images")
@@ -36,7 +44,7 @@ def playblast_dialog(placeholder=None):
         print('User cancelled ' + dialog_title)
 
 
-def playblast(folder=None):
+def playblast(folder=None, run_ffmpeg=True):
     """docstring for main"""
 
     # Get the open scene name
@@ -80,6 +88,13 @@ def playblast(folder=None):
         showOrnaments=False,
         offScreen=True
     )
+
+    # Example command: convert input.mp4 to output.mp4 with a lower bitrate
+    ffmpeg_command = f'ffmpeg -i {filepath}%04d.png {filepath}.mp4'
+
+    # Run the FFmpeg command
+    run_ffmpeg_command(ffmpeg_command)
+
     subprocess.Popen(fr'explorer "{folder}"')
     return pb
 

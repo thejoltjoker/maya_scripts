@@ -3,8 +3,15 @@
 Description of meerkat.py.
 """
 import os
+import random
 import re
 from maya import cmds, mel
+import logging
+
+import logging
+
+logging.basicConfig(level=logging.INFO, format='%(asctime)s %(name)s %(levelname)s: %(message)s')
+logger = logging.getLogger(__name__)
 
 ATTRIBUTES = {'affectAlpha': 'affects_alpha',
               'affectShadows': 'affects_alpha',
@@ -180,7 +187,7 @@ def create_redshift_materials():
 
         # Get the surface shader of the shading group
         sg_surface_shaders = shading_group_surface_shaders(sg)
-        print(sg_surface_shaders)
+        logger.info(sg_surface_shaders)
         if sg_surface_shaders:
             sg_surface_shader = sg_surface_shaders[0]
 
@@ -200,19 +207,19 @@ def create_redshift_materials():
         else:
             color = color_from_shading_group(sg)
 
-        print(vray_mtl)
+        logger.info(vray_mtl)
 
         # Set diffuse color of redshift material
         if color:
             color = color[0]
             cmds.setAttr('{}.diffuse_color'.format(redshift_mtl), *color, type="double3")
-            print('Set diffuse color to {}'.format(color))
+            logger.info('Set diffuse color to {}'.format(color))
 
         # Connect texture to redshift material
         if texture:
             texture = texture[0]
             cmds.connectAttr('{}.outColor'.format(texture), '{}.diffuse_color'.format(redshift_mtl))
-            print('Set texture to {}'.format(texture))
+            logger.info('Set texture to {}'.format(texture))
 
         # Set material values
         if vray_mtl:
@@ -227,7 +234,7 @@ def create_redshift_materials():
         cmds.connectAttr('{}.outColor'.format(redshift_mtl), '{}.surfaceShader'.format(sg), f=True)
 
         materials.append((redshift_mtl, sg))
-        print('---')
+        logger.info('---')
 
     return materials
 
@@ -295,6 +302,51 @@ def diffuse_from_vray_mtl(vray_mtl):
     return color, texture
 
 
+def search_and_replace_filenames(node, search_for, replace_with, attribute="fileTextureName", attribute_type='string'):
+    search_for = search_for.replace('\\', '/')
+    replace_with = replace_with.replace('\\', '/')
+
+    # Example: Print the file path
+    file_path = cmds.getAttr(node + '.' + attribute).replace('\\', '/')
+    new_file_path = file_path.replace(search_for, replace_with)
+    cmds.setAttr(node + '.' + attribute, new_file_path, type=attribute_type)
+    return node
+
+
+import maya.cmds as cmds
+import maya.cmds as cmds
+
+
+def get_connected_anim_curves(node):
+    anim_curves = []
+
+    # Get all connections of the specified node
+    connections = cmds.listConnections(node, destination=False)
+
+    if not connections:
+        print("No connections found for node:", node)
+        return anim_curves
+
+    # Filter the connections to find animCurve nodes
+    for connection in connections:
+        # Check if the connection is an animCurve node
+        if "animCurve" in cmds.nodeType(connection):
+            anim_curves.append(connection)
+
+    return anim_curves
+
+
+def offset_keyframes(node, offset):
+    connected_anim_curves = get_connected_anim_curves(node)
+
+    if connected_anim_curves:
+        for anim_curve in connected_anim_curves:
+            cmds.select(anim_curve)
+            logger.info('Offsetting keyframes by {offset} frames on {node}'.format(offset=offset, node=anim_curve))
+            cmds.keyframe(edit=True, relative=True, option="over", timeChange=offset)
+    cmds.select()
+
+
 def main_standalone():
     import maya.standalone
     maya.standalone.initialize()
@@ -321,7 +373,7 @@ def fix_chairs():
     seats_path = r'L:\assets\stadium\references\Stadium_LM_MAYA\Stadium_Seats'
     for f in os.listdir(seats_path):
         scene_path = os.path.join(seats_path, f)
-        print(scene_path)
+        logger.info(scene_path)
         # Import scene
         cmds.file(scene_path, i=True)
 
@@ -336,6 +388,76 @@ def fix_chairs():
     maya.standalone.uninitialize()
 
 
+def prep_fans():
+    import maya.standalone
+    maya.standalone.initialize()
+
+    # Set the frame rate to 25 fps
+    cmds.currentUnit(time='pal')
+    cmds.playbackOptions(ps=25, minTime=1, maxTime=100)
+    cmds.currentTime(1)
+
+    cmds.loadPlugin('redshift4maya.mll')
+    fans_path = r'L:\assets\stadium\references\Stadium_LM_MAYA\Characters_Fans'
+    for f in os.listdir(fans_path):
+        scene_path = os.path.join(fans_path, f)
+        offset_value = random.randint(0, 25)
+
+        logger.info(scene_path)
+        # Import scene
+        logger.info('Importing {}'.format(f))
+        """file -import -type "mayaBinary" -gr  -ignoreVersion -ra true -mergeNamespacesOnClash false -namespace "Fan_F_02" -options "v=0;p=17;f=0"  -pr  -importTimeRange "combine" "//10.21.110.10/libraries/assets/stadium/references/Stadium_LM_MAYA/Characters_Fans/Fan_F_02.mb";"""
+        namespace = os.path.splitext(f)[0]
+        cmds.file(scene_path, i=True, gr=True, namespace=namespace)
+
+        # Remove inherit transform on mesh
+        """setAttr "Fan_F_01:Fan_F_01_Mesh.inheritsTransform" 0;"""
+        if not any(x in namespace for x in ['Flag', 'Scarf']):
+            cmds.setAttr('{namespace}:{namespace}_Mesh.inheritsTransform'.format(namespace=namespace), 0)
+
+        # for node in cmds.ls(sl=True):
+        # group_name = cmds.listRelatives('group', children=True)[0].split(':')[-1].encode('utf-8') + '_grp'
+        group_name = namespace + '_grp'
+        group = cmds.rename('group', group_name)
+        cmds.xform(group_name, piv=(0, 0, 0), worldSpace=True)
+
+        # Loop animation
+        skeleton = namespace + ':Biped'
+
+        for joint in cmds.listRelatives(group, allDescendents=True, type='joint'):
+            # Offset keyframes
+            offset_keyframes(joint, offset_value)
+
+            # Loop animation
+            cmds.setInfinity(joint, pri='cycle', poi='cycle')
+
+        # offset_keyframes(skeleton, offset_value)
+        # cmds.setInfinity(skeleton, pri='cycle', poi='cycle')
+
+    # Do things
+    create_redshift_materials()
+    # Get a list of all file nodes in the scene
+    file_nodes = cmds.ls(type='file')
+    for fn in file_nodes:
+        search_and_replace_filenames(fn, 'E:\\PROJEKTY MAX\\!!!_CHARACTERS_MAYA\\\\',
+                                     'L:\\assets\\stadium\\references\\Stadium_LM_MAYA\\')
+    # Replace cache paths
+    cache_nodes = cmds.ls(type='cacheFile')
+    for cn in cache_nodes:
+        name = cmds.getAttr(cn + '.cacheName')
+        search_and_replace_filenames(cn, 'L:\\assets\\stadium\\references\\Stadium_LM_MAYA\\Characters_Fans\\',
+                                     'L:\\assets\\stadium\\references\\Stadium_LM_MAYA\\cache\\nCache\\{}'.format(name),
+                                     attribute='cachePath',
+                                     attribute_type='string')
+
+    mel.eval('MLdeleteUnused;')
+
+    # Save file
+    cmds.file(rename=r'L:\assets\stadium\sandbox\stadium_fans_rs_v001.mb')
+    cmds.file(save=True)
+    maya.standalone.uninitialize()
+
+
 def main():
     """docstring for main"""
     create_redshift_materials()
@@ -343,4 +465,5 @@ def main():
 
 if __name__ == '__main__':
     # main_standalone()
-    fix_chairs()
+    # fix_chairs()
+    prep_fans()

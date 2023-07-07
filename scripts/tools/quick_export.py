@@ -31,6 +31,16 @@ from sys import platform
 from PySide2.QtWidgets import *
 
 
+def export_abc(nodes, path):
+    """AbcExport -j "-frameRange 1003 1003 -dataFormat ogawa -root |lookdev|base|stadium_grp|STADIUM_ELEMENTS|Roof_Elements|Roof_Lighting -file L:/assets/stadium/sandbox/exports/lights_v00.abc";"""
+    current_frame = cmds.currentTime(query=True)
+    command = f"-frameRange {current_frame} {current_frame} -dataFormat ogawa"
+    for node in nodes:
+        command = f'{command} -root {node}'
+    command = f"{command} -file {path}"
+    return cmds.AbcExport(j=command)
+
+
 class QuickExport(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -181,6 +191,10 @@ class QuickExport(object):
                 self.enable_fbx_plugin()
                 file_type = 'Fbx'
                 export_extension = 'fbx'
+            elif export_format == 'Alembic':
+                self.enable_fbx_plugin()
+                file_type = 'AbcExport'
+                export_extension = 'abc'
 
             # elif export_format == 'Alembic':
             #     file_type = 'Alembic'
@@ -202,7 +216,6 @@ class QuickExport(object):
                 os.makedirs(exports_folder)
 
             # 3. Check if filename already exists, if so version up
-
             if os.path.exists(os.path.join(exports_folder, export_filename)):
                 export_filename = '{}_{:03}.{}'.format(
                     export_name, increment, export_extension)
@@ -214,7 +227,10 @@ class QuickExport(object):
             export_file = os.path.join(exports_folder, export_filename)
 
             # 4. export file
-            cmds.file(export_file, type=file_type, es=True)
+            if export_format == 'Alembic':
+                export_abc(cmds.ls(sl=True, long=True), export_file)
+            else:
+                cmds.file(export_file, type=file_type, es=True)
 
             if platform == "win32":
                 cmds.textField(self.line_output,
